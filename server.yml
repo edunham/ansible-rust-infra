@@ -8,13 +8,22 @@
         state=latest
   - name: Create .ssh directory 
     file:
-        path=/home/{{ ansible_ssh_user }}/.ssh/
+        # The ansible_ssh_user is specified in the hosts file
+        path=/.ssh/
         state=directory
         owner={{ ansible_ssh_user }}
         group={{ ansible_ssh_user }}
   - name: Install known_hosts file
     copy: 
         src=known_hosts
-        dest=/home/{{ ansible_ssh_user }}/.ssh/known_hosts
+        dest=/.ssh/known_hosts
         owner={{ ansible_ssh_user }}
-        group={{ ansible_ssh_user }}
+        group={{ ansible_ssh_user }}  
+  - name: Clone Playpen
+    git: 
+        repo=https://github.com/thestinger/playpen.git
+        dest=/home/{{ ansible_ssh_user }}/playpen_source 
+#   - name: Make Install Playpen
+#     command: make install
+#         chdir=/home/{{ansible_ssh_user }}/playpen_source/
+#         creates= TODO
