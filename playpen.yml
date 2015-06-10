@@ -2,10 +2,6 @@
 - hosts: play
   remote_user: root
   tasks:
-  - name: install Git
-    apt: 
-        pkg=git
-        state=latest
   - name: Create .ssh directory 
     file:
         # The ansible_ssh_user is specified in the hosts file
