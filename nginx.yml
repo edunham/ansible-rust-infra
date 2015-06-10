@@ -1,0 +1,45 @@
+---
+- hosts: play
+  remote_user: root
+  tasks:
+      - name: Install or update nginx
+        apt:
+            pkg=nginx
+            state=latest
+      - name: Install or update openssl
+        apt:
+            pkg=openssl
+            state=latest
+      - name: Create /etc/nginx/ssl directory
+        file:
+            path=/etc/nginx/ssl
+            state=directory
+            owner={{ ansible_ssh_user }}
+            group={{ ansible_ssh_user }}
+      - name: Create a 2048-bit dhparams.pem key if it doesn't exist
+        command: openssl dhparam -out dhparams.pem 2048
+        args:
+            chdir: /etc/nginx/ssl
+            creates: /etc/nginx/ssl/dhparams.pem
+      - name: Update /etc/nginx/sites-enabled/default to be more secure
+        copy:
+            src=nginx/sites-enabled/default
+            dest=/etc/nginx/sites-enabled/default
+            owner={{ ansible_ssh_user }}
+            group={{ ansible_ssh_user }}
+      - name: Create a SSL cert if it doesn't exist
+        command: >
+               openssl req
+               -new 
+               -nodes 
+               -x509 
+               -subj "/C=US/ST=Oregon/L=Portland/O=IT/CN=play.edunham.net" 
+               -days 3650 
+               -keyout /etc/nginx/ssl/server.key
+        args:
+            creates: /etc/nginx/ssl/nginx.key
+            creates: /etc/nginx/ssl/nginx.crt
+      - name: Start nginx service
+        service:
+            name=nginx
+            state=reloaded
