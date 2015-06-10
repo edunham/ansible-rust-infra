@@ -22,8 +22,19 @@
   - name: Clone Playpen
     git: 
         repo=https://github.com/thestinger/playpen.git
-        dest=/home/{{ ansible_ssh_user }}/playpen_source 
-#   - name: Make Install Playpen
-#     command: make install
-#         chdir=/home/{{ansible_ssh_user }}/playpen_source/
-#         creates= TODO
+        dest=/home/{{ ansible_ssh_user }}/playpen_source
+  - name: Install prerequisite packages for building playpen
+    apt:
+        pkg={{ item }}
+        state=present
+    with_items:
+        - make
+        - pkg-config
+        - clang
+        - gio-20
+        - libglib2.0-dev
+        - gcc
+  - name: Make Install Playpen
+    command: make install
+        chdir=/home/{{ansible_ssh_user }}/playpen_source/
+        # creates= TODO

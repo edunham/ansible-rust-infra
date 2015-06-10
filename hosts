@@ -1,2 +1,2 @@
 [server]
-play ansible_ssh_host=162.243.134.126 ansible_ssh_user=root
+play ansible_ssh_host=104.236.16.38 ansible_ssh_user=root
