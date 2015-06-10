@@ -31,10 +31,12 @@
         - make
         - pkg-config
         - clang
-        - gio-20
         - libglib2.0-dev
         - gcc
+        - libseccomp-dev
+        - libsystemd-dev
   - name: Make Install Playpen
+    # Note: Playpen requires Linux 3.8 or later. 3.16 counts as "later".
     command: make install
         chdir=/home/{{ansible_ssh_user }}/playpen_source/
-        # creates= TODO
+        creates=/usr/local/bin/playpen
