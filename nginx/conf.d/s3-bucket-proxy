@@ -1,0 +1,18 @@
+set $s3_bucket
+'static-rust-lang-org.s3-website-us-west-1.amazonaws.com';
+
+proxy_http_version     1.1;
+proxy_set_header       Host $s3_bucket;
+proxy_set_header       Authorization '';
+proxy_hide_header      x-amz-id-2;
+proxy_hide_header      x-amz-request-id;
+proxy_hide_header      Set-Cookie;
+proxy_ignore_headers   "Set-Cookie";
+proxy_buffering        off;
+proxy_intercept_errors on;
+
+resolver               172.16.0.23 valid=300s;
+resolver_timeout       10s;
+
+sub_filter         /index.html '/';
+

@@ -25,7 +25,7 @@ server {
 
     ssl_prefer_server_ciphers on;
 
-    ssl_dhparam /etc/nginx/ssl/dhparams.pem
+    ssl_dhparam /etc/nginx/ssl/dhparams.pem;
 
     location / {
         # First attempt to serve request as file, then
