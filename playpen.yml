@@ -36,3 +36,9 @@
     command: make install
         chdir=/home/{{ansible_ssh_user }}/playpen_source/
         creates=/usr/local/bin/playpen
+  - name: Clone rust-playpen
+    git: 
+        repo=https://github.com/rust-lang/rust-playpen.git
+        dest=/root/rust-playpen
+  - name: 
+
