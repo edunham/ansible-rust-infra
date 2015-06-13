@@ -1,0 +1,15 @@
+---
+- hosts: play
+  remote_user: root
+  tasks:
+  - name: Install some packages which are convenient during manual administration 
+    apt:
+        pkg={{ item }}
+        state=present
+    with_items:
+        - screen
+        - tmux
+        - tar
+        - git
+        - wget
+        - vim
