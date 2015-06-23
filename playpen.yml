@@ -2,43 +2,30 @@
 - hosts: play
   remote_user: root
   tasks:
-  - name: Create .ssh directory 
-    file:
-        # The ansible_ssh_user is specified in the hosts file
-        path=/.ssh/
-        state=directory
-        owner={{ ansible_ssh_user }}
-        group={{ ansible_ssh_user }}
-  - name: Install known_hosts file
-    copy: 
-        src=known_hosts
-        dest=/.ssh/known_hosts
-        owner={{ ansible_ssh_user }}
-        group={{ ansible_ssh_user }}  
-  - name: Clone Playpen
-    git: 
-        repo=https://github.com/thestinger/playpen.git
-        dest=/home/{{ ansible_ssh_user }}/playpen_source
-  - name: Install prerequisite packages for building playpen
-    apt:
-        pkg={{ item }}
-        state=present
-    with_items:
-        - make
-        - pkg-config
-        - clang
-        - libglib2.0-dev
-        - gcc
-        - libseccomp-dev
-        - libsystemd-dev
-  - name: Make Install Playpen
-    # Note: Playpen requires Linux 3.8 or later. 3.16 counts as "later".
-    command: make install
-        chdir=/home/{{ansible_ssh_user }}/playpen_source/
-        creates=/usr/local/bin/playpen
-  - name: Clone rust-playpen
-    git: 
-        repo=https://github.com/rust-lang/rust-playpen.git
-        dest=/root/rust-playpen
-  - name: 
-
+    - include: github_clone_skills.yml
+    - name: Clone Playpen
+        git: 
+            repo=https://github.com/thestinger/playpen.git
+            dest=/home/{{ ansible_ssh_user }}/playpen_source
+    - name: Install prerequisite packages for building playpen
+        apt:
+            pkg={{ item }}
+            state=present
+        with_items:
+            - make
+            - pkg-config
+            - clang
+            - libglib2.0-dev
+            - gcc
+            - libseccomp-dev
+            - libsystemd-dev
+    - name: Make Install Playpen
+        # Note: Playpen requires Linux 3.8 or later. 3.16 counts as "later".
+        command: make install
+            chdir=/home/{{ansible_ssh_user }}/playpen_source/
+            creates=/usr/local/bin/playpen
+    # Now let's install Rust-Playpen
+    - name: Clone Playground (rust-playpen)
+        git: repo=https://github.com/rust-lang/rust-playpen.git 
+             dest=/home/{{ ansible_ssh_user }}/playground_source
+      
