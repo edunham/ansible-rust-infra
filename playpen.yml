@@ -3,6 +3,7 @@
   remote_user: root
   tasks:
     - include: github_clone_skills.yml
+    - include: arch_imitation_skills.yml
     - name: Clone Playpen
         git: 
             repo=https://github.com/thestinger/playpen.git
