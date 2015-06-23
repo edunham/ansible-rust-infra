@@ -30,9 +30,11 @@ Nice-to-have:
 
 Essential: 
 
-- [ ] Nginx is installed and configuration files from current system are in
+- [x] Nginx is installed and configuration files from current system are in
   place
-- [ ] Nginx reloads when changes to its configs are pushed
+- [x] Nginx reloads when changes to its configs are pushed
+- [x] A unique Diffie-Hellman group is generated for SSL (https://weakdh.org/)
+- [ ] A self-signed SSL cert is generated on the host
 
 Nice-to-have: 
 
@@ -40,12 +42,13 @@ Nice-to-have:
 - [ ] Nginx errors and warnings are sent as alerts to the sysadmin (`\o`)
 - [ ] Something alerts the sysadmin if config mgmt found any config file had
   been modified on the system since its last run
+- [ ] Our real SSL cert is encrypted in the repo and decrypted on the host
 
 ### Playground
 
 Essential: 
 
-- [ ] `playpen` is installed
+- [x] `playpen` is installed
 - [ ] `rust-playpen` is installed
 - [ ] irc bot is running
 - [ ] web server is running
@@ -80,3 +83,4 @@ Nice-To-Have:
 - [ ] Automatically deployed from premade images
 - [ ] Ccache to eliminate spurious LLVM compiles
 - [ ] config mgmt for all supported Linux distros, Mac & Windows
+- [ ] Buildbot refactored to not call them slaves
