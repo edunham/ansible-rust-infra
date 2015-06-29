@@ -14,7 +14,7 @@ playground, a Buildbot buildmaster, and a variety of Buildbot workers.
 
 Essential: 
 
-- [ ] Users whose SSH pubkeys are present on the host can log in
+- [X] Users whose SSH pubkeys are present on the host can log in
 - [ ] Users can SSH from Bastion to other hosts (handled by AWS firewall)
 
 Nice-to-have: 
@@ -25,6 +25,8 @@ Nice-to-have:
   users)
 - [ ] Homedirs are forcibly emptied on a regular basis (make bad practices
   difficult)
+- [x] SSH pubkeys are automatically acquired from github
+- [ ] Former users are deprovisioned
 
 ### Nginx Proxy
 
@@ -34,7 +36,7 @@ Essential:
   place
 - [x] Nginx reloads when changes to its configs are pushed
 - [x] A unique Diffie-Hellman group is generated for SSL (https://weakdh.org/)
-- [ ] A self-signed SSL cert is generated on the host
+- [X] A self-signed SSL cert is generated on the host
 
 Nice-to-have: 
 
@@ -66,6 +68,7 @@ Essential:
 
 - [ ] Buildbot is installed and its configurations are in place
 - [ ] GitHub and other bot integration is configured
+- [ ] secret values are encrypted
 
 Nice-to-have: 
 
@@ -85,3 +88,16 @@ Nice-To-Have:
 - [ ] config mgmt for all supported Linux distros, Mac & Windows
 - [ ] Buildbot refactored to not call them slaves
 - [ ] metrics on worker instance utilization
+
+### Ansible Best Practices
+
+Essential:
+
+- [ ] Secret values encrypted with vault
+- [X] Directory layout set up according to [best
+  practices](https://docs.ansible.com/playbooks_best_practices.html)
+
+Nice-to-have:
+
+- [ ] Share reusable portions on Galaxy (or refactor to use shared code)
+- [ ] Include tests (how does one even test configs?)
