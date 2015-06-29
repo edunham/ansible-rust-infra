@@ -84,3 +84,4 @@ Nice-To-Have:
 - [ ] Ccache to eliminate spurious LLVM compiles
 - [ ] config mgmt for all supported Linux distros, Mac & Windows
 - [ ] Buildbot refactored to not call them slaves
+- [ ] metrics on worker instance utilization

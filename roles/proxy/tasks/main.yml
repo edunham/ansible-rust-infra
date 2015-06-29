@@ -23,7 +23,7 @@
             creates: /etc/nginx/ssl/dhparams.pem
       - name: Update /etc/nginx/sites-enabled/default to be more secure
         copy:
-            src=nginx/sites-enabled/default
+            src=sites-enabled/default
             dest=/etc/nginx/sites-enabled/default
             owner={{ ansible_ssh_user }}
             group={{ ansible_ssh_user }}
@@ -39,6 +39,14 @@
         args:
             creates: /etc/nginx/ssl/nginx.key
             creates: /etc/nginx/ssl/nginx.crt
+      - name: Copy nginx config files
+        copy: 
+            src=conf.d/{{ item }}
+            dest=/etc/nginx/conf.d/{{ item }}
+        with_items:
+            - github-proxy
+            - rust-lang-org-ssl
+            - s3-bucket-proxy
       - name: Start nginx service
         service:
             name=nginx
