@@ -1,2 +1,14 @@
-[server]
-play ansible_ssh_host=104.236.16.38 ansible_ssh_user=root
+[play]
+104.131.161.241  ansible_ssh_user=root
+
+[bastion]
+104.236.16.38 ansible_ssh_user=root
+
+[proxy]
+45.55.246.242 ansible_ssh_user=root
+
+[buildmaster]
+104.131.87.43 ansible_ssh_user=root
+
+[buildslave]
+104.236.59.156 ansible_ssh_user=root

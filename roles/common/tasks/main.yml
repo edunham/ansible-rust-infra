@@ -1,0 +1,17 @@
+---
+# This playbook gives a host the ability to clone repos from GitHub.
+
+- name: Create .ssh directory 
+  file:
+      # The ansible_ssh_user is specified in the hosts file
+      path=/.ssh/
+      state=directory
+      owner={{ ansible_ssh_user }}
+      group={{ ansible_ssh_user }}
+- name: Install known_hosts file
+  copy: 
+      src=known_hosts
+      dest=/.ssh/known_hosts
+      owner={{ ansible_ssh_user }}
+      group={{ ansible_ssh_user }}  
+

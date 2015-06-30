@@ -20,13 +20,10 @@
             - gcc
             - libseccomp-dev
             - libsystemd-dev
+            - debootstrap
+            - build-essentials
     - name: Make Install Playpen
         # Note: Playpen requires Linux 3.8 or later. 3.16 counts as "later".
         command: make install
             chdir=/home/{{ansible_ssh_user }}/playpen_source/
             creates=/usr/local/bin/playpen
-    # Now let's install Rust-Playpen
-    - name: Clone Playground (rust-playpen)
-        git: repo=https://github.com/rust-lang/rust-playpen.git 
-             dest=/home/{{ ansible_ssh_user }}/playground_source
-      
