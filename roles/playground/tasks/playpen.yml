@@ -1,29 +1,24 @@
 ---
-- hosts: play
-  remote_user: root
-  tasks:
-    - include: github_clone_skills.yml
-    - include: arch_imitation_skills.yml
-    - name: Clone Playpen
-        git: 
-            repo=https://github.com/thestinger/playpen.git
-            dest=/home/{{ ansible_ssh_user }}/playpen_source
-    - name: Install prerequisite packages for building playpen
-        apt:
-            pkg={{ item }}
-            state=present
-        with_items:
-            - make
-            - pkg-config
-            - clang
-            - libglib2.0-dev
-            - gcc
-            - libseccomp-dev
-            - libsystemd-dev
-            - debootstrap
-            - build-essentials
-    - name: Make Install Playpen
-        # Note: Playpen requires Linux 3.8 or later. 3.16 counts as "later".
-        command: make install
-            chdir=/home/{{ansible_ssh_user }}/playpen_source/
-            creates=/usr/local/bin/playpen
+- name: Clone Playpen
+  git: 
+      repo=https://github.com/thestinger/playpen.git
+      dest=/home/{{ ansible_ssh_user }}/playpen_source
+- name: Install prerequisite packages for building playpen
+  apt:
+       pkg={{ item }}
+       state=present
+  with_items:
+       - make
+       - pkg-config
+       - clang
+       - libglib2.0-dev
+       - gcc
+       - libseccomp-dev
+       - libsystemd-dev
+       - debootstrap
+       - build-essentials
+- name: Make Install Playpen
+  # Note: Playpen requires Linux 3.8 or later. 3.16 counts as "later".
+  command: make install
+       chdir=/home/{{ansible_ssh_user }}/playpen_source/
+       creates=/usr/local/bin/playpen

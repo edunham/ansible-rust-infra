@@ -1,9 +1,9 @@
 ---
 - name: Make arch-chroot available
-    copy:
-        src=fakearch/arch-chroot
-        dest=/usr/bin/arch-chroot
+  copy:
+      src=fakearch/arch-chroot
+      dest=/usr/bin/arch-chroot
 - name: Make pacstrap available
-    copy: 
-        src=fakearch/pacstrap
-        dest=/usr/bin/pacstrap
+  copy: 
+      src=fakearch/pacstrap
+      dest=/usr/bin/pacstrap

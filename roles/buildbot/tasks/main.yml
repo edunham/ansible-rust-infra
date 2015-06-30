@@ -1,38 +1,35 @@
 ---
-- hosts: buildmaster
-  remote_user: root
-  tasks:
-      - name: Install prerequisite packages
-        apt:
-            pkg={{ item }}
-            state=present
-        with_items: 
-            - python
-            - python-pip
-            - python-dev
-            - python-setuptools
-            - stunnel
-      - name: install Buildbot
-        easy_install:
-            name: buildbot==0.8.12
-      - name: Create buildbot user
-        user:
-            name: "buildbot"
-            home: "/home/buildbot"
-            shell: /bin/bash
-            createhome: yes  
-      - name: Clone my fork of the Buildbot configs
-        git: 
-            repo=https://github.com/edunham/rust-buildbot.git
-            dest=/home/buildbot/rust-buildbot
-      - name: Try to apply the patches from the configs
-        patch:
-            src=/home/buildbot/rust-buildbot/master/{{ item }}.patch
-        with_items: 
-            - ec2buildslave-take-subnet_id
-            - buildbot
-            - prune-changes-in-batches-of-100
-      - name: Start Buildbot
-        command: buildbot start master
-        args:
-            chdir: /home/buildbot/rust-buildbot/master
+ - name: Install prerequisite packages
+  apt:
+      pkg={{ item }}
+      state=present
+  with_items: 
+      - python
+      - python-pip
+      - python-dev
+      - python-setuptools
+      - stunnel
+- name: install Buildbot
+  easy_install:
+      name: buildbot==0.8.12
+- name: Create buildbot user
+  user:
+      name: "buildbot"
+      home: "/home/buildbot"
+      shell: /bin/bash
+      createhome: yes  
+- name: Clone my fork of the Buildbot configs
+  git: 
+      repo=https://github.com/edunham/rust-buildbot.git
+      dest=/home/buildbot/rust-buildbot
+- name: Try to apply the patches from the configs
+  patch:
+      src=/home/buildbot/rust-buildbot/master/{{ item }}.patch
+  with_items: 
+      - ec2buildslave-take-subnet_id
+      - buildbot
+      - prune-changes-in-batches-of-100
+- name: Start Buildbot
+  command: buildbot start master
+  args:
+      chdir: /home/buildbot/rust-buildbot/master

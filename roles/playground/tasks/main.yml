@@ -1,0 +1,11 @@
+---
+- include: fake_arch.yml
+- include: playpen.yml
+- name: Clone my copy of Playground (rust-playpen)
+  git: repo=https://github.com/edunham/rust-playpen.git 
+       dest=/home/{{ ansible_ssh_user }}/playground_source
+- name: Install debootstrap
+  apt: 
+       name=debootstrap
+- name: Run the Ubuntu-flavored playground init script
+  command: /home/{{ansible_ssh_user }}/playground_source/ubuntu.sh

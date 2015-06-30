@@ -1,24 +1,21 @@
 ---
-- hosts: bastion 
-  remote_user: root
-  tasks:
-      - name: Create user acrichto
-        user: 
-          name=acrichto
-          shell=/bin/bash
-          groups=admin,user
-      - name: Authorize acrichto's ssh keys from GitHub
-        authorized_key:
-          user=acrichto
-          key=https://github.com/alexcrichton.keys
-          state=present
-      - name: Create user edunham
-        user: 
-          name=edunham
-          shell=/bin/bash
-          groups=admin,user
-      - name: Authorize edunham's ssh keys from GitHub
-        authorized_key:
-          user=edunham
-          key=edunham.pub
-          state=present
+- name: Create user acrichto
+  user: 
+    name=acrichto
+    shell=/bin/bash
+    groups=admin,user
+- name: Authorize acrichto's ssh keys from GitHub
+  authorized_key:
+    user=acrichto
+    key=https://github.com/alexcrichton.keys
+    state=present
+- name: Create user edunham
+  user: 
+    name=edunham
+    shell=/bin/bash
+    groups=admin,user
+- name: Authorize edunham's ssh keys from GitHub
+  authorized_key:
+    user=edunham
+    key=edunham.pub
+    state=present
