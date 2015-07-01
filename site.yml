@@ -1,0 +1,46 @@
+---
+# This playbook applies all roles to their respective hosts
+
+- name: Apply ability to clone from Github
+  hosts: all
+  remote_user: root
+
+  roles:
+    - common
+
+- name: Deploy the bastion
+  hosts: bastion
+  remote_user: root
+
+  roles: 
+    - bastion
+
+- name: Deploy the proxy
+  hosts: proxy
+  remote_user: root
+
+  roles: 
+    - proxy
+
+- name: Deploy the playground
+  hosts: play 
+  remote_user: root
+
+  roles: 
+    - playground
+
+- name: Deploy the buildmaster
+  hosts: buildmaster
+  remote_user: root
+
+  roles: 
+    - buildmaster
+
+- name: Deploy the buildslaves
+  hosts: buildslave
+  remote_user: root
+
+  roles: 
+    - buildslave
+
+

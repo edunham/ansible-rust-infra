@@ -1,9 +1,13 @@
 ---
+- name: Create users group
+  group:
+    name=users
+    state=present
 - name: Create user acrichto
   user: 
     name=acrichto
     shell=/bin/bash
-    groups=admin,user
+    groups=users
 - name: Authorize acrichto's ssh keys from GitHub
   authorized_key:
     user=acrichto
@@ -13,9 +17,10 @@
   user: 
     name=edunham
     shell=/bin/bash
-    groups=admin,user
-- name: Authorize edunham's ssh keys from GitHub
+    groups=users
+- name: Authorize edunham's ssh key
+  include_vars: public_keys.yml
   authorized_key:
     user=edunham
-    key=edunham.pub
+    key={{ edunham_pubkey }}
     state=present
