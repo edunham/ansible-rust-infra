@@ -1,0 +1,28 @@
+---
+- name: Install prerequisite packages
+  apt:
+      pkg={{ item }}
+      state=present
+  with_items: 
+      - python
+      - python-pip
+      - python-dev
+      - python-setuptools
+      - stunnel
+- name: install Buildbot
+  easy_install:
+      name: buildbot==0.8.12
+- name: Create buildbot user
+  user:
+      name: "buildbot"
+      home: "/home/buildbot"
+      shell: /bin/bash
+      createhome: yes  
+- name: Clone my fork of the Buildbot configs
+  git: 
+      repo=https://github.com/edunham/rust-buildbot.git
+      dest=/home/buildbot/rust-buildbot
+- name: Run the build slave setup script
+  command: /home/buildbot/rust-buildbot/setup-slave.sh
+  args:
+    creates: /home/buildbot/rust-buildbot/rust-buildbot-slave-stunnel-final.conf

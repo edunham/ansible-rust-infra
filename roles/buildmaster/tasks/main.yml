@@ -1,5 +1,5 @@
 ---
- - name: Install prerequisite packages
+- name: Install prerequisite packages
   apt:
       pkg={{ item }}
       state=present
