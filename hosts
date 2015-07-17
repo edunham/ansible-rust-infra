@@ -12,3 +12,6 @@
 
 [buildslave]
 104.236.59.156 ansible_ssh_user=root
+
+[elk]
+45.55.149.114 ansible_ssh_user=root
