@@ -41,25 +41,24 @@
       path= #TODO
       
 - name: Start Elasticsearch service
-  # TODO sudo service elasticsearch restart
+  service: 
+      name=elasticsearch
+      state=restarted
 
-- name: Tell Elasticsearch to start on boot
+#- name: Tell Elasticsearch to start on boot
   # TODO sudo update-rc.d elasticsearch defaults 95 10
 
 # ============= Kibana Stuff ================================================= 
 
 - name: Grab Kibana tarball
   # TODO wget
-  # https://download.elasticsearch.org/kibana/kibana/kibana-4.0.1-linux-x64.tar.gz
   #  into homedir
-
-- name: Extract Kibana
-  # TODO tar xvf kibana-*.tar.gz
-  # EXTRACT INTO /OPT/KIBANA
-
+  unarchive:
+      src=https://download.elasticsearch.org/kibana/kibana/kibana-4.0.1-linux-x64.tar.gz
+      dest=/usr/bin/kibana
 
 - name: Put Kibana config 
-  # TODO vi /opt/kibana/config/kibana.yml
+  # TODO vi /usr/bin/kibana/config/kibana.yml
 
 - name: Run Kibana
   # TODO /opt/kibana/bin/kibana
