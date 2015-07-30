@@ -1,0 +1,13 @@
+---
+# This playbook applies all roles to their respective hosts
+
+- name: Apply ability to clone from Github
+  hosts: all
+  roles:
+    - common
+
+- name: Deploy the bastion
+  hosts: default 
+  roles: 
+    - bastion
+
