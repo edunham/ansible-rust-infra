@@ -1,12 +1,12 @@
 ---
-- name: Install or update nginx
+- name: Install or update nginx and openssl
   apt:
-      pkg=nginx
+      pkg={{ item }}
       state=latest
-- name: Install or update openssl
-  apt:
-      pkg=openssl
-      state=latest
+      update_cache=yes
+  with_items:
+      - nginx
+      - openssl
 - name: Create /etc/nginx/ssl directory
   file:
       path=/etc/nginx/ssl
