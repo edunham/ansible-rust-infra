@@ -1,4 +1,6 @@
 ---
+- name: Load SSH keys from public_keys.yml
+  include_vars: public_keys.yml
 - name: Create users group
   group:
     name=users
@@ -19,8 +21,7 @@
     shell=/bin/bash
     groups=users
 - name: Authorize edunham's ssh key
-  include_vars: public_keys.yml
   authorized_key:
     user=edunham
-    key={{ edunham_pubkey }}
+    key="{{ edunham_pubkey }}"
     state=present
