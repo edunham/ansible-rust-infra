@@ -175,7 +175,45 @@ server {
         include /etc/nginx/conf.d/s3-bucket-proxy;
         proxy_pass http://$s3_bucket/doc$request_uri;
     }
-
+    # Nom on the nomicon links. s/nightly/stable once it comes out.
+    location ^/adv-book {
+        rewrite ^/adv-book(.*) https://doc.rust-lang.org/nightly/nomicon$1 permanent;
+    }
+    location ^/rustonomicon {
+        rewrite ^/rustonomicon(.*) https://doc.rust-lang.org/nightly/nomicon$1 permanent;
+    }
+    location ^/rustinomicon {
+        rewrite ^/rustinomicon(.*) https://doc.rust-lang.org/nightly/nomicon$1 permanent;
+    }
+    location ^/trpl {
+        rewrite ^/trpl(.*) https://doc.rust-lang.org/nightly/book$1 permanent;
+    }
+    # /stable/thing goes to /stable/thing
+    location ^/stable/adv-book {
+        rewrite ^/stable/adv-book(.*) https://doc.rust-lang.org/stable/nomicon$1 permanent;
+    }
+    location ^/stable/rustonomicon {
+        rewrite ^/stable/rustonomicon(.*) https://doc.rust-lang.org/stable/nomicon$1 permanent;
+    }
+    location ^/stable/rustinomicon {
+        rewrite ^/stable/rustinomicon(.*) https://doc.rust-lang.org/stable/nomicon$1 permanent;
+    }
+    location ^/stable/trpl {
+        rewrite ^/stable/trpl(.*) https://doc.rust-lang.org/stable/book$1 permanent;
+    }
+    # /nightly/thing goes to /nightly/thing
+    location ^/nightly/adv-book {
+        rewrite ^/nightly/adv-book(.*) https://doc.rust-lang.org/nightly/nomicon$1 permanent;
+    }
+    location ^/nightly/rustonomicon {
+        rewrite ^/nightly/rustonomicon(.*) https://doc.rust-lang.org/nightly/nomicon$1 permanent;
+    }
+    location ^/nightly/rustinomicon {
+        rewrite ^/nightly/rustinomicon(.*) https://doc.rust-lang.org/nightly/nomicon$1 permanent;
+    }
+    location ^/nightly/trpl {
+        rewrite ^/nightly/trpl(.*) https://doc.rust-lang.org/nightly/book$1 permanent;
+    }
     # Redirect all master documentation to `nightly`
     location ~ ^/master(?<path>.*)$ {
         return 301 $scheme://$http_host/nightly$path;
