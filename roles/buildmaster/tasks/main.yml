@@ -23,19 +23,10 @@
       home: "/home/buildbot"
       shell: /bin/bash
       createhome: yes  
-- name: Clone my fork of the Buildbot configs
+- name: Clone the Buildbot configs
   git: 
-      repo='https://github.com/edunham/rust-buildbot.git'
+      repo='https://github.com/rust-lang/rust-buildbot.git'
       dest='/home/buildbot/rust-buildbot'
-
-- name: Try to apply the patches from the configs
-  patch:
-        src=/home/buildbot/rust-buildbot/master/{{ item.patch }}.patch
-        basedir={{ item.base }}
-  with_items: 
-    - { patch: 'ec2buildslave-take-subnet_id', base: '/usr/local/lib/' }
-    - { patch: 'buildbot', base: '/usr/local/lib' }
-    - { patch: 'prune-changes-in-batches-of-100', base: '/usr/local/lib' }
 
 - name: Start Buildbot
   command: buildbot start master
