@@ -31,4 +31,6 @@
 - name: Start Buildbot
   command: buildbot start master
   args:
-      chdir: /home/buildbot/rust-buildbot/master
+      chdir: /home/buildbot/rust-buildbot
+  become: yes
+  become_user: buildbot
