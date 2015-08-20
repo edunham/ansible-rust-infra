@@ -30,3 +30,10 @@
   hosts: buildslave
   roles: 
     - buildslave
+
+- name: Deploy the ELK stack
+  hosts: elk
+  roles: 
+    - bakhti.elk
+
+
