@@ -27,17 +27,17 @@
 - name: Create a SSL cert if it doesn't exist
   command: >
          openssl req
-         -new 
-         -nodes 
-         -x509 
-         -subj "/C=US/ST=Oregon/L=Portland/O=IT/CN=play.edunham.net" 
-         -days 3650 
+         -new
+         -nodes
+         -x509
+         -subj "/C=US/ST=Oregon/L=Portland/O=IT/CN=play.edunham.net"
+         -days 3650
          -keyout /etc/nginx/ssl/server.key
   args:
       creates: /etc/nginx/ssl/nginx.key
       creates: /etc/nginx/ssl/nginx.crt
 - name: Copy nginx config files
-  copy: 
+  copy:
       src=conf.d/{{ item }}
       dest=/etc/nginx/conf.d/{{ item }}
   with_items:

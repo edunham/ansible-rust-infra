@@ -3,7 +3,7 @@
   apt:
       pkg={{ item }}
       state=present
-  with_items: 
+  with_items:
       - python
       - python-pip
       - python-dev
@@ -17,9 +17,9 @@
       name: "buildbot"
       home: "/home/buildbot"
       shell: /bin/bash
-      createhome: yes  
+      createhome: yes
 - name: Clone my fork of the Buildbot configs
-  git: 
+  git:
       repo=https://github.com/edunham/rust-buildbot.git
       dest=/home/buildbot/rust-buildbot
 - name: Run the build slave setup script

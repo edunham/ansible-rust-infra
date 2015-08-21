@@ -6,7 +6,7 @@
   apt:
       pkg={{ item }}
       state=present
-  with_items: 
+  with_items:
       - python
       - python-pip
       - python-dev
@@ -22,9 +22,9 @@
       name: "buildbot"
       home: "/home/buildbot"
       shell: /bin/bash
-      createhome: yes  
+      createhome: yes
 - name: Clone the Buildbot configs
-  git: 
+  git:
       repo='https://github.com/rust-lang/rust-buildbot.git'
       dest='/home/buildbot/rust-buildbot'
 

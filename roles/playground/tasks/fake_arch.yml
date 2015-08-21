@@ -4,6 +4,6 @@
       src=fakearch/arch-chroot
       dest=/usr/bin/arch-chroot
 - name: Make pacstrap available
-  copy: 
+  copy:
       src=fakearch/pacstrap
       dest=/usr/bin/pacstrap

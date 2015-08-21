@@ -6,7 +6,7 @@
     name=users
     state=present
 - name: Create user acrichto
-  user: 
+  user:
     name=acrichto
     shell=/bin/bash
     groups=users
@@ -16,7 +16,7 @@
     key=https://github.com/alexcrichton.keys
     state=present
 - name: Create user edunham
-  user: 
+  user:
     name=edunham
     shell=/bin/bash
     groups=users

@@ -1,6 +1,6 @@
 ---
 - name: Clone Playpen
-  git: 
+  git:
       repo=https://github.com/thestinger/playpen.git
       dest=/home/{{ ansible_ssh_user }}/playpen_source
 - name: Install prerequisite packages for building playpen
