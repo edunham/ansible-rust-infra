@@ -36,4 +36,10 @@
   roles: 
     - bakhti.elk
 
+- name: Deploy Servo build slave
+  hosts: ndk
+  roles: 
+    - servo-compiler
+
+
 
