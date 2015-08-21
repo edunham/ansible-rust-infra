@@ -1,14 +1,17 @@
 ---
+# http://askubuntu.com/questions/76885/where-can-i-find-a-g-4-7-package
+- name: Add repository for g++-4.7
+  apt_repository: repo='ppa:ubuntu-toolchain-r/test'
+
+- name: See whether we can skip the slow git clone later
+  stat: path="{{rust_checkout_path}}/README.md"
+  register: rust_checkout_stat
+
 # Mirroring https://github.com/servo/servo/wiki/Updating-the-Rust-compiler-used-by-Servo
 - name: Install dependencies
   apt:
       name={{ item }}
-  with_items:
-    - gcc-4.7-base
-    - g++-4.7
-    - curl
-    - git
-
+  with_items: rust_compile_dependencies
 
 - name: Set gcc/g++ 4.7 as the default instead of 4.6.3
   # http://docs.ansible.com/ansible/alternatives_module.html does not
@@ -18,6 +21,34 @@
 - name: Git clone Rust
   git:
     repo=https://github.com/rust-lang/rust.git
-    dest=/tmp/
+    dest={{rust_checkout_path}}
     accept_hostkey=yes
+    force=yes
+  when: rust_checkout_stat.stat.exists == False
 
+- name: Demand permissions to build NDK
+  file: 
+      path={{ android_ndk_path }}
+      owner={{ ansible_ssh_user }}
+      mode="u+rwx"
+      recurse=yes
+
+- name: Build standalone NDK
+  command: 'sudo {{ android_ndk_path }}/build/tools/make-standalone-toolchain.sh --platform="android-18" --toolchain=arm-linux-androideabi-4.8 --install-dir={{ ndk_standalone_path }} --ndk-dir={{ android_ndk_path }} --arch=arm'
+  args:  
+    creates: "{{ ndk_standalone_path }}/ndk-standalone"
+
+
+- name: Configure rustc on Linux
+  command: ./configure --host=x86_64-unknown-linux-gnu,i686-unknown-linux-gnu --target=arm-linux-androideabi --arm-linux-androideabi-ndk={{ ndk_standalone_path }}/ndk-standalone 
+    
+- name: Configure rustc on OSX
+  command: ./configure --host=x86_64-apple-darwin,i686-apple-darwin --target=arm-linux-androideabi --arm-linux-androideabi-ndk=/Users/larsberg/ndk-standalone/ 
+    
+    #    && make clean ; make -j4 rustc-stage2 && make dist
+
+    #&& make clean ; 
+    
+    #make -j4 rustc-stage2 && 
+    
+    #make dist
