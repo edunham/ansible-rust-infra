@@ -33,4 +33,10 @@ Vagrant.configure(2) do |config|
     elk.vm.network :forwarded_port, guest: 5601, host:5601
     end
   end
+  config.vm.define "ndk" do |ndk|
+    ndk.vm.provision "ansible" do |ansible|
+        ansible.playbook = "vagrant.yml"
+        ansible.sudo = true
+    end
+  end
 end

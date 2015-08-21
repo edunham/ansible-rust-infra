@@ -1,0 +1,11 @@
+---
+- name: nickp666.android-sdk
+  # required by ndk role
+  src: git+git@github.com:nickpack/ansible-role-android-sdk.git
+  version: 3b86cacc93cf6a688a0cda15b86aefde7c228460
+
+- name: elleryq.android-ndk
+  src: git+git@github.com:elleryq/galaxy-role-android-ndk.git
+  version: b78681476359a153780de4f190f0eeac7fd4b230
+
+

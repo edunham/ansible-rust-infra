@@ -1,0 +1,23 @@
+---
+# Mirroring https://github.com/servo/servo/wiki/Updating-the-Rust-compiler-used-by-Servo
+- name: Install dependencies
+  apt:
+      name={{ item }}
+  with_items:
+    - gcc-4.7-base
+    - g++-4.7
+    - curl
+    - git
+
+
+- name: Set gcc/g++ 4.7 as the default instead of 4.6.3
+  # http://docs.ansible.com/ansible/alternatives_module.html does not
+  # currently take slave args, which this requires.
+  command: sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.7 60 --slave /usr/bin/g++ g++ /usr/bin/g++-4.7
+
+- name: Git clone Rust
+  git:
+    repo=https://github.com/rust-lang/rust.git
+    dest=/tmp/
+    accept_hostkey=yes
+

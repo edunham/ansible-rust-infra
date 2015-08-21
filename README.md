@@ -1,21 +1,21 @@
 # Ansible Rust Infrastructure
 
 See [here](http://edunham.net/2015/06/05/configuration_management_comparison.html)
-for a detailed explanation of why I chose Ansible. 
+for a detailed explanation of why I chose Ansible.
 
 ## The Infrastructure
 
 This infrastructure consists of a bastion server, an nginx proxy, the
-playground, a Buildbot buildmaster, and a variety of Buildbot workers. 
+playground, a Buildbot buildmaster, and a variety of Buildbot workers.
 
 ### Bastion
 
-Essential: 
+Essential:
 
 - [X] Users whose SSH pubkeys are present on the host can log in
 - [X] Users can SSH from Bastion to other hosts (handled by AWS firewall)
 
-Nice-to-have: 
+Nice-to-have:
 
 - [ ] MOTD reminds users how to use Bastion correctly
 - [ ] An intrusion detection system reports unusual activity to administrators
@@ -26,14 +26,14 @@ Nice-to-have:
 - [x] SSH pubkeys are automatically acquired from github
 - [ ] Former users are deprovisioned
 
-Status: 
+Status:
 
 It works. To get it into production, will need to sort out who needs accounts
-and where their keys should come from. 
+and where their keys should come from.
 
 ### Nginx Proxy
 
-Essential: 
+Essential:
 
 - [x] Nginx is installed and configuration files from current system are in
   place
@@ -41,7 +41,7 @@ Essential:
 - [x] A unique Diffie-Hellman group is generated for SSL (https://weakdh.org/)
 - [X] A self-signed SSL cert is generated on the host
 
-Nice-to-have: 
+Nice-to-have:
 
 - [ ] Nginx logs go somewhere useful to be graphed
 - [ ] Nginx errors and warnings are sent as alerts to the sysadmin (`\o`)
@@ -49,14 +49,14 @@ Nice-to-have:
   been modified on the system since its last run
 - [ ] Our real SSL cert is encrypted in the repo and decrypted on the host
 
-Status: 
+Status:
 
 It works. To get it into production, will need to add real SSL certs,
 encrypted, to Ansible.
 
 ### Playground
 
-Essential: 
+Essential:
 
 - [x] `playpen` is installed
 - [X] `rust-playpen` is installed
@@ -70,37 +70,37 @@ Nice-to-have:
 - [ ] lock down AWS firewall to prevent connections between playground and
   hosts other than Bastion
 
-Status: 
+Status:
 
 Debootstrap conversion needs to be tested. Security needs to be tested.
 Correct solution here is probably just to dockerize it (ETA 1 month as a
-background task). 
+background task).
 
 ### Buildmaster
 
-Essential: 
+Essential:
 
 - [X] Buildbot is installed and its configurations are in place
 - [ ] secret values are encrypted
 
-Nice-to-have: 
+Nice-to-have:
 
 - [ ] TaskCluster
 
-Status: 
+Status:
 
 We're patching Buildbot. Why are we patching buildbot? For production
 readiness, need to thoroughly test with new version of buildbot (Pip's
-mismatches apt's, which is another issue).  
+mismatches apt's, which is another issue).
 
 ### Build Workers
 
-Essential: 
+Essential:
 
 - [X] Configured as Buildbot slaves as per https://github.com/rust-lang/rust-buildbot
 - [X] At least one distro of Linux buildslave in config mgmt
 
-Nice-To-Have: 
+Nice-To-Have:
 
 - [ ] Automatically deployed from premade images
 - [ ] Ccache to eliminate spurious LLVM compiles
@@ -108,7 +108,7 @@ Nice-To-Have:
 - [ ] Buildbot refactored to not call them slaves
 - [ ] metrics on worker instance utilization
 
-Status: 
+Status:
 
 Not thoroughly tested. For production readiness, should test on more platforms
 and refactor to examine platform in configs. Managing build workers is
@@ -127,7 +127,7 @@ Nice-to-have:
 - [ ] Share reusable portions on Galaxy (or refactor to use shared code)
 - [ ] Include tests (how does one even test configs?)
 
-Status: 
+Status:
 
 This repo just doesn't have any secrets in it right now. Directory structure
 is close to how everyone else does it.
