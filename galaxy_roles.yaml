@@ -11,3 +11,7 @@
 - name: bakhti.elk
   src: git+git@github.com:bakhti/ansible-elk.git
   version: 6ee0fd1d58bd368ae1f4e16bb4328212b89b275d
+
+#- name: alliedplatform.rustlang
+#  src: git+git@github.com:OpenDMD/rustlang-ansible-role.git
+#  version: b29fd565d8f586cfc822321255fea166321c6960
