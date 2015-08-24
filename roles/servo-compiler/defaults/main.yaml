@@ -4,7 +4,7 @@ android_sdk_path: /opt/android/sdk
 android_ndk_path: /opt/android/ndk/android-ndk-r10e
 ndk_standalone_path: /opt/android
 
-rust_checkout_path: /tmp/rustlang
+rust_checkout_path: /opt/rustlang
 
 
 rust_compile_dependencies:
