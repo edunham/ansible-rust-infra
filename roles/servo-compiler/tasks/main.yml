@@ -56,8 +56,8 @@
   args:
       chdir: "{{ rust_checkout_path }}"
 
-- name: make -j4 rustc-stage2
-  command: 'make -j4 rustc-stage2'
+- name: "make -j{{ rust_make_threads }} rustc-stage2"
+  command: 'make -j{{ rust_make_threads }} rustc-stage2'
   args:
       chdir: "{{ rust_checkout_path }}"
 

@@ -6,6 +6,9 @@ ndk_standalone_path: /opt/android
 
 rust_checkout_path: /opt/rustlang
 
+# make's -j option 
+rust_make_threads: 2
+
 
 rust_compile_dependencies:
   - "gcc-4.7"
