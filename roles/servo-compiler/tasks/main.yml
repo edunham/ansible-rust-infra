@@ -40,7 +40,7 @@
 
 
 - name: Configure rustc on Linux
-  command: 'sudo ./configure --host=x86_64-unknown-linux-gnu,i686-unknown-linux-gnu --target=arm-linux-androideabi --arm-linux-androideabi-ndk={{ ndk_standalone_path }}'
+  command: 'sudo ./configure --host=x86_64-unknown-linux-gnu --target=arm-linux-androideabi --arm-linux-androideabi-ndk={{ ndk_standalone_path }}'
   args:
       chdir: "{{ rust_checkout_path }}"
   when: ansible_os_family != "Darwin"    
@@ -57,7 +57,7 @@
       chdir: "{{ rust_checkout_path }}"
 
 - name: "make -j{{ rust_make_threads }} rustc-stage2"
-  command: 'make -j{{ rust_make_threads }} rustc-stage2'
+  command: 'make -j{{ rust_make_threads }} rustc-stage2 VERBOSE=1'
   args:
       chdir: "{{ rust_checkout_path }}"
 
