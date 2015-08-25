@@ -18,3 +18,5 @@ rust_compile_dependencies:
   - "git"
   - "gcc-multilib"
   - "g++-multilib"
+  - "build-essential"
+  - "automake"
