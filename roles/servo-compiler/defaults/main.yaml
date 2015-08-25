@@ -16,3 +16,5 @@ rust_compile_dependencies:
   - "make"
   - "curl"
   - "git"
+  - "gcc-multilib"
+  - "g++-multilib"
