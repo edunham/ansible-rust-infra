@@ -20,3 +20,4 @@ rust_compile_dependencies:
   - "g++-multilib"
   - "build-essential"
   - "automake"
+  - "clang-3.4"
