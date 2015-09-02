@@ -1,0 +1,8 @@
+[mac]
+111.22.33.44 ansible_ssh_user=administrator ansible_ssh_pass=password
+
+[proxy]
+111.22.33.45 ansible_ssh_user=root
+
+[bastion]
+111.22.33.46 ansible_ssh_user=root
