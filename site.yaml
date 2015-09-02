@@ -3,8 +3,6 @@
 
 - name: Apply ability to clone from Github
   hosts: all
-  remote_user: root
-
   roles:
     - common
 
@@ -43,4 +41,7 @@
   roles: 
     - buildslave
 
-
+- name: Provision the Macs
+  hosts: mac
+  roles: 
+    - geerlingguy.homebrew 
