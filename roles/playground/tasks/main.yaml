@@ -1,6 +1,6 @@
 ---
-- include: fake_arch.yml
-- include: playpen.yml
+- include: fake_arch.yaml
+- include: playpen.yaml
 - name: Clone my copy of Playground (rust-playpen)
   git: repo=https://github.com/edunham/rust-playpen.git
        dest=/home/{{ ansible_ssh_user }}/playground_source
