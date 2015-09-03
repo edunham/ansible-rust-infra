@@ -4,6 +4,8 @@
 - name: Clone my copy of Playground (rust-playpen)
   git: repo=https://github.com/edunham/rust-playpen.git
        dest=/home/{{ ansible_ssh_user }}/playground_source
+       accept_hostkey=yes
+
 - name: Install debootstrap
   apt:
        name=debootstrap

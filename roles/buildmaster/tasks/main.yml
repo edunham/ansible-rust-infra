@@ -2,6 +2,7 @@
 - name: apt-get update
   apt:
       update_cache=yes
+
 - name: Install prerequisite packages
   apt:
       pkg={{ item }}
@@ -14,19 +15,23 @@
       - stunnel
       # we need Git later and Ansible doesn't auto-install it
       - git
+
 - name: install Buildbot
   easy_install:
       name: buildbot==0.8.12
+
 - name: Create buildbot user
   user:
       name: "buildbot"
       home: "/home/buildbot"
       shell: /bin/bash
       createhome: yes
+
 - name: Clone the Buildbot configs
   git:
       repo='https://github.com/rust-lang/rust-buildbot.git'
       dest='/home/buildbot/rust-buildbot'
+      accept_hostkey=yes
 
 - name: Start Buildbot
   command: buildbot start master

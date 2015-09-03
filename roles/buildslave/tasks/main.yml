@@ -9,19 +9,24 @@
       - python-dev
       - python-setuptools
       - stunnel
+
 - name: install Buildbot
   easy_install:
       name: buildbot==0.8.12
+
 - name: Create buildbot user
   user:
       name: "buildbot"
       home: "/home/buildbot"
       shell: /bin/bash
       createhome: yes
-- name: Clone my fork of the Buildbot configs
+
+- name: Clone the Buildbot configs
   git:
-      repo=https://github.com/edunham/rust-buildbot.git
+      repo=https://github.com/rustlang/rust-buildbot.git
       dest=/home/buildbot/rust-buildbot
+      accept_hostkey=yes
+
 - name: Run the build slave setup script
   command: /home/buildbot/rust-buildbot/setup-slave.sh
   args:

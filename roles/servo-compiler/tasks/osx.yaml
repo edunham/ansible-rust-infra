@@ -1,0 +1,35 @@
+---
+#- name: Install dependencies
+#  apt:
+#      name={{ item }}
+#  with_items: rust_compile_dependencies
+
+- name: Git clone Rust
+  git:
+    repo=https://github.com/rust-lang/rust.git
+    dest={{rust_checkout_path}}
+    accept_hostkey=yes
+    force=yes
+  when: rust_checkout_stat.stat.exists == False
+
+- name: Configure rustc on OSX
+  command: './configure --host=x86_64-apple-darwin,i686-apple-darwin --target=arm-linux-androideabi --arm-linux-androideabi-ndk={{ ndk_standalone_path }}'
+  args:
+      chdir: "{{ rust_checkout_path }}"
+  when: ansible_os_family == "Darwin"
+
+- name: make clean
+  command: 'make clean'
+  args:
+      chdir: "{{ rust_checkout_path }}"
+
+- name: "make -j{{ rust_make_threads }} rustc-stage2"
+  command: 'make -j{{ rust_make_threads }} rustc-stage2 VERBOSE=1'
+  args:
+      chdir: "{{ rust_checkout_path }}"
+
+- name: make dist
+  command: 'make dist'
+  args:
+      chdir: "{{ rust_checkout_path }}"
+
