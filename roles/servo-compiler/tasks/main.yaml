@@ -12,7 +12,10 @@
   when: rust_checkout_stat.stat.exists == False
 
 - include: linux.yaml
+  when: ansible_os_family == "Debian"
+
 - include: osx.yaml
+  when: ansible_os_family == "Darwin"
 
 - name: make clean
   command: 'make clean'

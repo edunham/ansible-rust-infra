@@ -3,11 +3,9 @@
   homebrew:
       name={{ item }}
   with_items: rust_osx_dependencies
-  when: ansible_os_family == "Darwin"
 
 - name: Configure rustc on OSX
   command: './configure --host=x86_64-apple-darwin,i686-apple-darwin --target=arm-linux-androideabi --arm-linux-androideabi-ndk={{ ndk_standalone_path }}'
   args:
       chdir: "{{ rust_checkout_path }}"
-  when: ansible_os_family == "Darwin"
 
