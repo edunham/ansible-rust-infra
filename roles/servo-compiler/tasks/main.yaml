@@ -9,7 +9,17 @@
     dest={{rust_checkout_path}}
     accept_hostkey=yes
     force=yes
+  become: yes
+  become_method: sudo
   when: rust_checkout_stat.stat.exists == False
+
+- name: Ensure the ansible_ssh_user has perms on the Rust checkout
+  file: 
+    path={{ rust_checkout_path }}
+    owner={{ ansible_ssh_user }}
+    recurse=yes
+  become: yes
+  become_method: sudo
 
 - include: linux.yaml
   when: ansible_os_family == "Debian"
