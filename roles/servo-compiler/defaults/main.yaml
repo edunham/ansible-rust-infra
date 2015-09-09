@@ -9,6 +9,10 @@ rust_checkout_path: /opt/rustlang
 # make's -j option 
 rust_make_threads: 2
 
+rust_osx_dependencies:
+  - "python"
+  - "curl"
+  - "git"
 
 rust_compile_dependencies:
   - "gcc-4.7"

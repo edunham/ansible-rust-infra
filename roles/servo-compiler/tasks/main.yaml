@@ -1,3 +1,31 @@
 ---
+- name: See whether we can skip the slow git clone later
+  stat: path="{{rust_checkout_path}}/README.md"
+  register: rust_checkout_stat
+
+- name: Git clone Rust
+  git:
+    repo=https://github.com/rust-lang/rust.git
+    dest={{rust_checkout_path}}
+    accept_hostkey=yes
+    force=yes
+  when: rust_checkout_stat.stat.exists == False
+
+- include: linux.yaml
 - include: osx.yaml
-- include: linux.yaml 
+
+- name: make clean
+  command: 'make clean'
+  args:
+      chdir: "{{ rust_checkout_path }}"
+
+- name: "make -j{{ rust_make_threads }} rustc-stage2"
+  command: 'make -j{{ rust_make_threads }} rustc-stage2 VERBOSE=1'
+  args:
+      chdir: "{{ rust_checkout_path }}"
+
+- name: make dist
+  command: 'make dist'
+  args:
+      chdir: "{{ rust_checkout_path }}"
+
