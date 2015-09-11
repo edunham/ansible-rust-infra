@@ -5,23 +5,17 @@
   group:
     name=users
     state=present
-- name: Create user acrichto
+
+- name: Create user accounts
   user:
-    name=acrichto
+    name={{ item.user }}
     shell=/bin/bash
     groups=users
-- name: Authorize acrichto's ssh keys from GitHub
+  with_items: account_names
+
+- name: Authorize everyoene's SSH keys 
   authorized_key:
-    user=acrichto
-    key=https://github.com/alexcrichton.keys
+    user={{ item.user }}
+    key={{ item.key }}
     state=present
-- name: Create user edunham
-  user:
-    name=edunham
-    shell=/bin/bash
-    groups=users
-- name: Authorize edunham's ssh key
-  authorized_key:
-    user=edunham
-    key="{{ edunham_pubkey }}"
-    state=present
+ with_items: account_names
