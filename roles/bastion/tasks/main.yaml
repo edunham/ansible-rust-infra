@@ -18,4 +18,8 @@
     user={{ item.user }}
     key={{ item.key }}
     state=present
- with_items: account_names
+  with_items: account_names
+
+- name: Set the hostname
+  hostname: 
+      name=bastion
