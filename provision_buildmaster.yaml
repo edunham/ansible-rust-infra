@@ -1,0 +1,8 @@
+---
+
+- name: Deploy the buildmaster
+  hosts: buildmaster
+  remote_user: root
+
+  roles: 
+    - buildmaster

@@ -1,0 +1,11 @@
+---
+- name: Deploy the Macs
+  hosts: mac
+  roles:
+    - edunham.xcode 
+    - {role: geerlingguy.homebrew,
+       homebrew_install_path: '/usr/local/homebrew',
+       homebrew_brew_bin_path: '/usr/local/brewbin',
+       skip_cask: true}
+    - { role: elleryq.android-ndk, when: ansible_os_family == 'Debian'}
+    - servo-compiler

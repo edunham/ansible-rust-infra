@@ -1,0 +1,8 @@
+---
+
+- name: Deploy the proxy
+  hosts: proxy
+  remote_user: root
+
+  roles: 
+    - proxy

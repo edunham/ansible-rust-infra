@@ -1,0 +1,7 @@
+---
+- name: Deploy the bastion
+  hosts: bastion
+  remote_user: root
+
+  roles: 
+    - bastion
