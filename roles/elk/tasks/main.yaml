@@ -1,5 +1,0 @@
----
-- name: Enable Universe repository
-  apt_repository:
-    repo="deb http://archive.ubuntu.com/ubuntu {{ansible_distribution_release}} universe"
-  when: ansible_distribution == 'Ubuntu'

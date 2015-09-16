@@ -4,11 +4,6 @@
   src: git+https://github.com/elleryq/galaxy-role-android-ndk.git
   version: 9d62bd24cefbf61417994d02baeacd2382535137
 
-# https://github.com/bakhti/ansible-elk
-- name: bakhti.elk
-  src: git+https://github.com/bakhti/ansible-elk.git
-  version: 5412ce2313b7868bba35c3f77cdf8c37e54d98b4
-
 # https://github.com/geerlingguy/ansible-role-homebrew
 - name: geerlingguy.homebrew
   src: git+https://github.com/geerlingguy/ansible-role-homebrew.git
