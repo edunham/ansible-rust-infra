@@ -1,9 +1,4 @@
 ---
-# https://github.com/elleryq/galaxy-role-android-ndk
-- name: elleryq.android-ndk
-  src: git+https://github.com/elleryq/galaxy-role-android-ndk.git
-  version: 9d62bd24cefbf61417994d02baeacd2382535137
-
 # https://github.com/geerlingguy/ansible-role-homebrew
 - name: geerlingguy.homebrew
   src: git+https://github.com/geerlingguy/ansible-role-homebrew.git
@@ -12,6 +7,12 @@
 - name: edunham.xcode
   src: git+https://github.com/edunham/ansible-role-xcode.git
   version: master
+
+# https://github.com/elleryq/galaxy-role-android-ndk
+- name: elleryq.android-ndk
+  src: git+https://github.com/elleryq/galaxy-role-android-ndk.git
+  version: 9d62bd24cefbf61417994d02baeacd2382535137
+
 
 #- name: alliedplatform.rustlang
 #  src: git+https://github.com/OpenDMD/rustlang-ansible-role.git
