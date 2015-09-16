@@ -6,8 +6,8 @@ sudo: false
 install:
     - pip install ansible
 
-before_script: 
-    - ansible-galaxy install -r galaxy_roles.yaml -p roles/
-
 script:
-    - "ansible-playbook -i tests/inventory site.yaml --syntax-check" 
+    - "ansible-playbook -i tests/inventory provision_bastion.yaml --syntax-check" 
+    - "ansible-playbook -i tests/inventory provision_buildmaster.yaml --syntax-check" 
+    - "ansible-playbook -i tests/inventory provision_proxy.yaml --syntax-check" 
+    - "ansible-playbook -i tests/inventory provision_playground.yaml --syntax-check" 
