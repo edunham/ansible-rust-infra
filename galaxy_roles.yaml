@@ -9,14 +9,14 @@
   src: git+https://github.com/bakhti/ansible-elk.git
   version: 5412ce2313b7868bba35c3f77cdf8c37e54d98b4
 
-# https://github.com/geerlingguy/ansible-role-homebrew      
+# https://github.com/geerlingguy/ansible-role-homebrew
 - name: geerlingguy.homebrew
   src: git+https://github.com/geerlingguy/ansible-role-homebrew.git
   version: 5e6fa3a5590158492751d621fb68d9eec6607c76
 
 - name: edunham.xcode
   src: git+https://github.com/edunham/ansible-role-xcode.git
-  version: master 
+  version: master
 
 #- name: alliedplatform.rustlang
 #  src: git+https://github.com/OpenDMD/rustlang-ansible-role.git
