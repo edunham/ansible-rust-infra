@@ -1,8 +1,8 @@
 ---
 # This playbook applies all roles to their respective hosts
-- include: provision_bastion.yaml
-- include: provision_playground.yaml
-- include: provision_buildmaster.yaml
-- include: provision_proxy.yaml
-- include: provision_macs.yaml
+- include: provision/bastion.yaml
+- include: provision/playground.yaml
+- include: provision/buildmaster.yaml
+- include: provision/proxy.yaml
+- include: provision/macs.yaml
 

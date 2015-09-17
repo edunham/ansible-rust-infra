@@ -10,7 +10,7 @@ configure. Ansible can come from your system's package manager or `pip install
 ansible`. 
 
 If you don't want to install `ansible` system-wide, you can `pip install
-requirements.txt` into a local virtualenv. 
+pip_requirements.txt` into a local virtualenv. 
 
 ### Install Galaxy roles
 
