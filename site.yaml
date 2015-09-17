@@ -4,5 +4,5 @@
 - include: provision/playground.yaml
 - include: provision/buildmaster.yaml
 - include: provision/proxy.yaml
-- include: provision/macs.yaml
+- include: provision/ndk.yaml
 

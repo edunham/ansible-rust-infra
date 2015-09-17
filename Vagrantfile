@@ -9,33 +9,25 @@ Vagrant.configure(2) do |config|
   #config.vm.network :public_network
   config.vm.define "bastion" do |bastion|
     bastion.vm.provision "ansible" do |ansible|
-        ansible.playbook = "vagrant.yaml"
+        ansible.playbook = "provision/bastion.yaml"
         ansible.sudo = true
     end
   end
   config.vm.define "proxy" do |proxy|
     proxy.vm.provision "ansible" do |ansible|
-        ansible.playbook = "vagrant.yaml"
+        ansible.playbook = "provision/proxy.yaml"
         ansible.sudo = true
     end
   end
   config.vm.define "buildmaster" do |buildmaster|
     buildmaster.vm.provision "ansible" do |ansible|
-        ansible.playbook = "vagrant.yaml"
+        ansible.playbook = "provision/buildmaster.yaml"
         ansible.sudo = true
-    end
-  end
-  config.vm.define "elk" do |elk|
-    elk.vm.provision "ansible" do |ansible|
-        ansible.playbook = "vagrant.yaml"
-        ansible.sudo = true
-    elk.vm.network :forwarded_port, guest: 80, host: 5432
-    elk.vm.network :forwarded_port, guest: 5601, host:5601
     end
   end
   config.vm.define "ndk" do |ndk|
     ndk.vm.provision "ansible" do |ansible|
-        ansible.playbook = "vagrant.yaml"
+        ansible.playbook = "ndk.yaml"
         ansible.sudo = true
     end
   end
