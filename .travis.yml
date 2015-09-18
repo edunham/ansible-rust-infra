@@ -7,7 +7,7 @@ install:
     - pip install ansible
 
 script:
-    - "ansible-playbook -i tests/inventory provision_bastion.yaml --syntax-check" 
-    - "ansible-playbook -i tests/inventory provision_buildmaster.yaml --syntax-check" 
-    - "ansible-playbook -i tests/inventory provision_proxy.yaml --syntax-check" 
-    - "ansible-playbook -i tests/inventory provision_playground.yaml --syntax-check" 
+    - "ansible-playbook -i tests/inventory provision/bastion.yaml --syntax-check" 
+    - "ansible-playbook -i tests/inventory provision/buildmaster.yaml --syntax-check" 
+    - "ansible-playbook -i tests/inventory provision/proxy.yaml --syntax-check" 
+    - "ansible-playbook -i tests/inventory provision/playground.yaml --syntax-check" 
