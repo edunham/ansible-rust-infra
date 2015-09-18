@@ -8,7 +8,8 @@
   user:
     name=ansible
     shell=/bin/bash
-    groups=users,wheel
+    groups=users,sudo
+  become: yes
 
 - name: Automatically activate Ansible venv on login
   lineinfile:
@@ -46,7 +47,8 @@
   user:
     name={{ item.user }}
     shell=/bin/bash
-    groups=users,wheel
+    groups=users,sudo
+  become: yes
   with_items: account_names
 
 - name: Authorize everyone's SSH keys 
