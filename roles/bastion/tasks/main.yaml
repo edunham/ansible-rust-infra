@@ -54,7 +54,7 @@
 - name: Authorize everyone's SSH keys 
   authorized_key:
     user={{ item.user }}
-    key={{ item.key }}
+    key="{{ item.key }}"
     state=present
   with_items: account_names
 
