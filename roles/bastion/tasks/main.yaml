@@ -1,19 +1,55 @@
 ---
-- name: Load SSH keys from public_keys.yml
-  include_vars: public_keys.yml
 - name: Create users group
   group:
     name=users
     state=present
 
-- name: Create user accounts
+- name: Create Ansible user account 
+  user:
+    name=ansible
+    shell=/bin/bash
+    groups=users
+
+- name: Automatically activate Ansible venv on login
+  lineinfile:
+    dest=/home/ansible/.bashrc
+    line='source /home/ansible/ansible-venv/bin/activate'
+    state=present
+    insertafter=EOF  
+    
+- name: Clone this repo (how meta!)
+  git:
+    clone=yes
+    dest="/home/ansible/"
+    force=yes
+    repo="https://github.com/edunham/ansible-rust-infra.git"
+    update=yes
+
+- name: Install Pip + Virtualenv
+  apt: 
+    name={{ item }} 
+    state=present
+    update_cache=yes
+  with_items:
+    - python-pip
+    - python-virtualenv
+
+- name: Ensure that the venv is created, with reqs instaled
+  pip:
+    virtualenv=/home/ansible/ansible-venv
+    requirements=/home/ansible/ansible-rust-infra/pip_requirements.txt 
+
+- name: Install or update Ansible-Galaxy dependencies
+  command: /home/ansible/ansible-venv/bin/ansible-galaxy install --force -r /home/ansible/ansible-rust-infra/galaxy_roles.yaml
+
+- name: Create human user accounts
   user:
     name={{ item.user }}
     shell=/bin/bash
-    groups=users
+    groups=users,wheel
   with_items: account_names
 
-- name: Authorize everyoene's SSH keys 
+- name: Authorize everyone's SSH keys 
   authorized_key:
     user={{ item.user }}
     key={{ item.key }}
