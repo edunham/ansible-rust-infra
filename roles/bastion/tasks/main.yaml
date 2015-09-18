@@ -8,7 +8,7 @@
   user:
     name=ansible
     shell=/bin/bash
-    groups=users
+    groups=users,wheel
 
 - name: Automatically activate Ansible venv on login
   lineinfile:
