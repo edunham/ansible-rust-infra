@@ -21,7 +21,7 @@
 - name: Clone this repo (how meta!)
   git:
     clone=yes
-    dest="/home/ansible/"
+    dest="/home/ansible/ansible-rust-infra"
     force=yes
     repo="https://github.com/edunham/ansible-rust-infra.git"
     update=yes
