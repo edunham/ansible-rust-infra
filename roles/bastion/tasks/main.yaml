@@ -58,6 +58,7 @@
     state=present
   with_items: account_names
 
+# hostnamectl comes from systemd-services package, installed by default      
 - name: Set the hostname
-  hostname: 
-      name=bastion
+  command: hostnamectl set-hostname bastion
+  when: ansible_os_family == 'Debian'
