@@ -38,3 +38,16 @@ $ vagrant provision rolename
 
 where `thing` is the nickname of the host you wish to play with. The
 `Vagrantfile` and `vagrant.yaml` control which roles apply to which hosts. 
+
+### Provisioning the Bastion
+
+My current workflow is to run Ansible from the Bastion host when managing
+production systems. To provision the bastion: 
+
+```
+ssh bastion
+sudo su ansible
+source ~/ansible-venv/bin/activate
+cd ~/ansible-rust-infra/
+ansible-playbook provision/bastion.yaml -i tests/inventory -c local --check
+```
