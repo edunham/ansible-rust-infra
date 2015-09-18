@@ -1,7 +1,9 @@
 ---
 - name: Deploy the bastion
   hosts: bastion
-  remote_user: root
+  user: ansible 
+  sudo: True
+  sudo_user: ansible
 
   roles: 
     - bastion
