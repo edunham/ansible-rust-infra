@@ -11,7 +11,7 @@
 # https://github.com/elleryq/galaxy-role-android-ndk
 - name: elleryq.android-ndk
   src: git+https://github.com/elleryq/galaxy-role-android-ndk.git
-  version: 9d62bd24cefbf61417994d02baeacd2382535137
+  version: ba99d37b27cc45dbbe28450478d582b678071f24
 
 
 #- name: alliedplatform.rustlang
