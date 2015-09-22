@@ -27,7 +27,7 @@ Vagrant.configure(2) do |config|
   end
   config.vm.define "ndk" do |ndk|
     ndk.vm.provision "ansible" do |ansible|
-        ansible.playbook = "ndk.yaml"
+        ansible.playbook = "provision/ndk.yaml"
         ansible.sudo = true
     end
   end
