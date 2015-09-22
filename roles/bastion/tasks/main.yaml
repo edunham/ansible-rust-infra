@@ -58,5 +58,7 @@
 
 # hostnamectl comes from systemd-services package, installed by default      
 - name: Set the hostname
-  command: hostnamectl set-hostname bastion
+  hostname:
+    name=bastion
+  become: yes
   when: ansible_os_family == 'Debian'
