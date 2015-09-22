@@ -11,24 +11,28 @@ Vagrant.configure(2) do |config|
     bastion.vm.provision "ansible" do |ansible|
         ansible.playbook = "provision/bastion.yaml"
         ansible.sudo = true
+        ansible.extra_vars = { ansible_ssh_user: 'vagrant' }
     end
   end
   config.vm.define "proxy" do |proxy|
     proxy.vm.provision "ansible" do |ansible|
         ansible.playbook = "provision/proxy.yaml"
         ansible.sudo = true
+        ansible.extra_vars = { ansible_ssh_user: 'vagrant' }
     end
   end
   config.vm.define "buildmaster" do |buildmaster|
     buildmaster.vm.provision "ansible" do |ansible|
         ansible.playbook = "provision/buildmaster.yaml"
         ansible.sudo = true
+        ansible.extra_vars = { ansible_ssh_user: 'vagrant' }
     end
   end
   config.vm.define "ndk" do |ndk|
     ndk.vm.provision "ansible" do |ansible|
         ansible.playbook = "provision/ndk.yaml"
         ansible.sudo = true
+        ansible.extra_vars = { ansible_ssh_user: 'vagrant' }
     end
   end
 end
