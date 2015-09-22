@@ -1,4 +1,11 @@
 ---
+- name: Install Dependencies
+  apt:
+    name={{ item }}
+    state=present
+    update_cache=yes
+  with_items: apt_packages
+
 - name: Create users group
   group:
     name=users
@@ -25,15 +32,6 @@
     force=yes
     repo="https://github.com/edunham/ansible-rust-infra.git"
     update=yes
-
-- name: Install Pip + Virtualenv
-  apt: 
-    name={{ item }} 
-    state=present
-    update_cache=yes
-  with_items:
-    - python-pip
-    - python-virtualenv
 
 - name: Ensure that the venv is created, with reqs instaled
   pip:

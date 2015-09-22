@@ -1,4 +1,9 @@
 ---
+apt_packages:
+  - git
+  - python-pip
+  - python-virtualenv
+
 account_names:
   - { user: 'acrichto', key: "https://github.com/alexcrichton.keys" }
   - { user: 'brson', key: "https://github.com/brson.keys" }
