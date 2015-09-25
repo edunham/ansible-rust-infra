@@ -25,7 +25,7 @@
       chdir: /etc/nginx/ssl
       creates: /etc/nginx/ssl/dhparams.pem
 
-- name: Update /etc/nginx/sites-enabled/default to be more secure
+- name: Update /etc/nginx/sites-enabled/default
   copy:
       src=sites-enabled/default
       dest=/etc/nginx/sites-enabled/default
@@ -38,7 +38,7 @@
          -new
          -nodes
          -x509
-         -subj "/C=US/ST=Oregon/L=Portland/O=IT/CN=play.edunham.net"
+         -subj "/C=US/ST=Oregon/L=Portland/O=IT/CN=doc.rust-lang.org"
          -days 3650
          -keyout /etc/nginx/ssl/server.key
   args:
@@ -49,10 +49,7 @@
   copy:
       src=conf.d/{{ item }}
       dest=/etc/nginx/conf.d/{{ item }}
-  with_items:
-      - github-proxy
-      - rust-lang-org-ssl
-      - s3-bucket-proxy
+  with_items: nginx_config_files
 
 - name: Start nginx service
   service:

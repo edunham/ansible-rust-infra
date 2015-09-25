@@ -1,0 +1,5 @@
+---
+nginx_config_files:
+    - github-proxy
+    - rust-lang-org-ssl
+    - s3-bucket-proxy
