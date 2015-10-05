@@ -255,6 +255,13 @@ server {
     location ~ ^/doc(.*)$ {
         return 301 $scheme://$http_host$1;
     }
+    
+    # Synonyms for nomicon and book
+    rewrite ^adv-book(.*)$ nomicon$1 permanent;
+    rewrite ^rustonomicon(.*)$ nomicon$1 permanent;
+    rewrite ^rustinomicon(.*)$ nomicon$1 permanent;
+    
+    rewrite ^trpl(.*)$ book$1 permanent;
 
     # Redirect all other documentation to master
     location ~ /$ {
