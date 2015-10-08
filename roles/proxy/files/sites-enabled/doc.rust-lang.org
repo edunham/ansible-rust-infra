@@ -104,14 +104,6 @@ server {
         include /etc/nginx/conf.d/github-proxy;
         proxy_pass http://rust-lang-deprecated.github.io/$request_uri;
     }
-    location =/term {
-        include /etc/nginx/conf.d/github-proxy;
-        proxy_pass http://rust-lang-deprecated.github.io/term/;
-    }
-    location ~ ^/term {
-        include /etc/nginx/conf.d/github-proxy;
-        proxy_pass http://rust-lang-deprecated.github.io/$request_uri;
-    }
     location =/libc {
         include /etc/nginx/conf.d/github-proxy;
         proxy_pass http://rust-lang-nursery.github.io/libc/;
