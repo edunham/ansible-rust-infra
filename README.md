@@ -1,4 +1,4 @@
-# Ansible Rust Infrastructure !(https://travis-ci.org/edunham/ansible-rust-infra.svg)
+# Ansible Rust Infrastructure ![build status](https://travis-ci.org/edunham/ansible-rust-infra.svg)
 
 See [here](http://edunham.net/2015/06/05/configuration_management_comparison.html)
 for a detailed explanation of why I chose Ansible.
