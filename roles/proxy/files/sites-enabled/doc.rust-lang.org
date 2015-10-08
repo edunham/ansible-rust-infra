@@ -128,14 +128,6 @@ server {
         include /etc/nginx/conf.d/github-proxy;
         proxy_pass http://rust-lang-nursery.github.io/$request_uri;
     }
-    location =/threadpool {
-        include /etc/nginx/conf.d/github-proxy;
-        proxy_pass http://rust-lang-deprecated.github.io/threadpool/;
-    }
-    location ~ ^/threadpool {
-        include /etc/nginx/conf.d/github-proxy;
-        proxy_pass http://rust-lang-deprecated.github.io/$request_uri;
-    }
     location ~ ^/tempdir {
         include /etc/nginx/conf.d/github-proxy;
         proxy_pass http://rust-lang-nursery.github.io/$request_uri;
