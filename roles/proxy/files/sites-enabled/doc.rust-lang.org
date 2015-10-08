@@ -1,12 +1,11 @@
 # You may add here your
 # server {
-#   ...
+#    ...
 # }
 # statements for each of your virtual hosts to this file
 
 ##
-# You should look at the following URL's in order to grasp a solid
-# understanding
+# You should look at the following URL's in order to grasp a solid understanding
 # of Nginx configuration files in order to fully unleash the power of Nginx.
 # http://wiki.nginx.org/Pitfalls
 # http://wiki.nginx.org/QuickStart
@@ -35,123 +34,123 @@ server {
     # Proxy github rust-lang crates' documentation back to github
     location =/regex {
         include /etc/nginx/conf.d/github-proxy;
-        proxy_pass http://rust-lang.github.io/regex/;
+        proxy_pass http://rust-lang-nursery.github.io/regex/;
     }
     location ~ ^/regex {
         include /etc/nginx/conf.d/github-proxy;
-        proxy_pass http://rust-lang.github.io/$request_uri;
+        proxy_pass http://rust-lang-nursery.github.io/$request_uri;
     }
     location =/uuid {
         include /etc/nginx/conf.d/github-proxy;
-        proxy_pass http://rust-lang.github.io/uuid/;
+        proxy_pass http://rust-lang-nursery.github.io/uuid/;
     }
     location ~ ^/uuid {
         include /etc/nginx/conf.d/github-proxy;
-        proxy_pass http://rust-lang.github.io/$request_uri;
+        proxy_pass http://rust-lang-nursery.github.io/$request_uri;
     }
     location =/time {
         include /etc/nginx/conf.d/github-proxy;
-        proxy_pass http://rust-lang.github.io/time/;
+          proxy_pass http://rust-lang-deprecated.github.io/time/;
     }
     location ~ ^/time {
         include /etc/nginx/conf.d/github-proxy;
-        proxy_pass http://rust-lang.github.io/$request_uri;
+        proxy_pass http://rust-lang-deprecated.github.io/$request_uri;
     }
     location =/semver {
         include /etc/nginx/conf.d/github-proxy;
-        proxy_pass http://rust-lang.github.io/semver/;
+        proxy_pass http://rust-lang-deprecated.github.io/semver/;
     }
     location ~ ^/semver {
         include /etc/nginx/conf.d/github-proxy;
-        proxy_pass http://rust-lang.github.io/$request_uri;
+        proxy_pass http://rust-lang-deprecated.github.io/$request_uri;
     }
     location =/rustc-serialize {
         include /etc/nginx/conf.d/github-proxy;
-        proxy_pass http://rust-lang.github.io/rustc-serialize/;
+        proxy_pass http://rust-lang-deprecated.github.io/rustc-serialize/;
     }
     location ~ ^/rustc-serialize {
         include /etc/nginx/conf.d/github-proxy;
-        proxy_pass http://rust-lang.github.io/$request_uri;
+        proxy_pass http://rust-lang-deprecated.github.io/$request_uri;
     }
     location =/log {
         include /etc/nginx/conf.d/github-proxy;
-        proxy_pass http://rust-lang.github.io/log/;
+        proxy_pass http://rust-lang-nursery.github.io/log/;
     }
     location ~ ^/log {
         include /etc/nginx/conf.d/github-proxy;
-        proxy_pass http://rust-lang.github.io/$request_uri;
+        proxy_pass http://rust-lang-nusery.github.io/$request_uri;
     }
     location =/getopts {
         include /etc/nginx/conf.d/github-proxy;
-        proxy_pass http://rust-lang.github.io/getopts/;
+        proxy_pass http://rust-lang-nursery.github.io/getopts/;
     }
     location ~ ^/getopts {
         include /etc/nginx/conf.d/github-proxy;
-        proxy_pass http://rust-lang.github.io/$request_uri;
+        proxy_pass http://rust-lang-nursery.github.io/$request_uri;
     }
     location =/glob {
         include /etc/nginx/conf.d/github-proxy;
-        proxy_pass http://rust-lang.github.io/glob/;
+        proxy_pass http://rust-lang-nursery.github.io/glob/;
     }
     location ~ ^/glob {
         include /etc/nginx/conf.d/github-proxy;
-        proxy_pass http://rust-lang.github.io/$request_uri;
+        proxy_pass http://rust-lang-nursery.github.io/$request_uri;
     }
     location =/num {
         include /etc/nginx/conf.d/github-proxy;
-        proxy_pass http://rust-lang.github.io/num/;
+        proxy_pass http://rust-lang-deprecated.github.io/num/;
     }
     location ~ ^/num {
         include /etc/nginx/conf.d/github-proxy;
-        proxy_pass http://rust-lang.github.io/$request_uri;
+        proxy_pass http://rust-lang-deprecated.github.io/$request_uri;
     }
     location =/term {
         include /etc/nginx/conf.d/github-proxy;
-        proxy_pass http://rust-lang.github.io/term/;
+        proxy_pass http://rust-lang-deprecated.github.io/term/;
     }
     location ~ ^/term {
         include /etc/nginx/conf.d/github-proxy;
-        proxy_pass http://rust-lang.github.io/$request_uri;
+        proxy_pass http://rust-lang-deprecated.github.io/$request_uri;
     }
     location =/libc {
         include /etc/nginx/conf.d/github-proxy;
-        proxy_pass http://rust-lang.github.io/libc/;
+        proxy_pass http://rust-lang-nursery.github.io/libc/;
     }
     location ~ ^/libc {
         include /etc/nginx/conf.d/github-proxy;
-        proxy_pass http://rust-lang.github.io/$request_uri;
+        proxy_pass http://rust-lang-nursery.github.io/$request_uri;
     }
     location =/bitflags {
         include /etc/nginx/conf.d/github-proxy;
-        proxy_pass http://rust-lang.github.io/bitflags/;
+        proxy_pass http://rust-lang-nursery.github.io/bitflags/;
     }
     location ~ ^/bitflags {
         include /etc/nginx/conf.d/github-proxy;
-        proxy_pass http://rust-lang.github.io/$request_uri;
+        proxy_pass http://rust-lang-nursery.github.io/$request_uri;
     }
     location =/rand {
         include /etc/nginx/conf.d/github-proxy;
-        proxy_pass http://rust-lang.github.io/rand/;
+        proxy_pass http://rust-lang-nursery.github.io/rand/;
     }
     location ~ ^/rand {
         include /etc/nginx/conf.d/github-proxy;
-        proxy_pass http://rust-lang.github.io/$request_uri;
+        proxy_pass http://rust-lang-nursery.github.io/$request_uri;
     }
     location =/threadpool {
         include /etc/nginx/conf.d/github-proxy;
-        proxy_pass http://rust-lang.github.io/threadpool/;
-    }
-    location ~ ^/tempdir {
-        include /etc/nginx/conf.d/github-proxy;
-        proxy_pass http://rust-lang.github.io/$request_uri;
-    }
-    location =/tempdir {
-        include /etc/nginx/conf.d/github-proxy;
-        proxy_pass http://rust-lang.github.io/tempdir/;
+        proxy_pass http://rust-lang-deprecated.github.io/threadpool/;
     }
     location ~ ^/threadpool {
         include /etc/nginx/conf.d/github-proxy;
-        proxy_pass http://rust-lang.github.io/$request_uri;
+        proxy_pass http://rust-lang-deprecated.github.io/$request_uri;
+    }
+    location ~ ^/tempdir {
+        include /etc/nginx/conf.d/github-proxy;
+        proxy_pass http://rust-lang-nursery.github.io/$request_uri;
+    }
+    location =/tempdir {
+        include /etc/nginx/conf.d/github-proxy;
+        proxy_pass http://rust-lang-nursery.github.io/tempdir/;
     }
 
     # Documentation which no longer needs to be indexed
@@ -175,18 +174,19 @@ server {
         include /etc/nginx/conf.d/s3-bucket-proxy;
         proxy_pass http://$s3_bucket/doc$request_uri;
     }
-    # Nom on the nomicon links. s/nightly/stable once it comes out.
+
+    # Nom on the nomicon links.
     location ^/adv-book {
-        rewrite ^/adv-book(.*) https://doc.rust-lang.org/nightly/nomicon$1 permanent;
+        rewrite ^/adv-book(.*) https://doc.rust-lang.org/stable/nomicon$1 permanent;
     }
     location ^/rustonomicon {
-        rewrite ^/rustonomicon(.*) https://doc.rust-lang.org/nightly/nomicon$1 permanent;
+        rewrite ^/rustonomicon(.*) https://doc.rust-lang.org/stable/nomicon$1 permanent;
     }
     location ^/rustinomicon {
-        rewrite ^/rustinomicon(.*) https://doc.rust-lang.org/nightly/nomicon$1 permanent;
+        rewrite ^/rustinomicon(.*) https://doc.rust-lang.org/stable/nomicon$1 permanent;
     }
     location ^/trpl {
-        rewrite ^/trpl(.*) https://doc.rust-lang.org/nightly/book$1 permanent;
+        rewrite ^/trpl(.*) https://doc.rust-lang.org/stable/book$1 permanent;
     }
     # /stable/thing goes to /stable/thing
     location ^/stable/adv-book {
@@ -214,6 +214,7 @@ server {
     location ^/nightly/trpl {
         rewrite ^/nightly/trpl(.*) https://doc.rust-lang.org/nightly/book$1 permanent;
     }
+
     # Redirect all master documentation to `nightly`
     location ~ ^/master(?<path>.*)$ {
         return 301 $scheme://$http_host/nightly$path;
@@ -266,4 +267,3 @@ server {
         proxy_pass http://$s3_bucket/doc/stable$request_uri;
     }
 }
-
