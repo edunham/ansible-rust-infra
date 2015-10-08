@@ -175,7 +175,7 @@ server {
 
     # Deprecated crates moved elsewhere
     location ~ ^/threadpool {
-        return 301 http://frewsxcv.github.io/$request_uri;
+        return 301 http://frewsxcv.github.io$request_uri;
     }
     location ~ ^/term {
         return 301 http://stebalien.github.io/doc$request_uri;
