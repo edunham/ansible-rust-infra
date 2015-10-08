@@ -173,6 +173,14 @@ server {
         proxy_pass http://rust-lang-nursery.github.io/$request_uri;
     }
 
+    # Deprecated crates moved elsewhere
+    location ~ ^/threadpool {
+        return 301 http://frewsxcv.github.io/$request_uri;
+    }
+    location ~ ^/term {
+        return 301 http://stebalien.github.io/doc$request_uri;
+    }
+
     # Documentation which no longer needs to be indexed
     location ~ ^/0.([0-9])/.*/$ {
         include /etc/nginx/conf.d/s3-bucket-proxy;
