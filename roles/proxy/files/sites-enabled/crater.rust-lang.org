@@ -19,28 +19,21 @@
 
 server {
        listen         80;
-       server_name    play.rust-lang.org;
+       server_name    crater.rust-lang.org;
        return         301 https://$server_name$request_uri;
 }
 
 server {
 	include /etc/nginx/conf.d/rust-lang-org-ssl;
 
-	server_name play.rust-lang.org;
+	server_name crater.rust-lang.org;
 
 	sub_filter_once off;
 
-	# Redirect to the known S3 instance
 	location / {
 		include /etc/nginx/conf.d/s3-bucket-proxy;
  		add_header 'Access-Control-Max-Age' '1000';
-		set $s3_bucket 'ec2-54-241-16-194.us-west-1.compute.amazonaws.com';
-  		proxy_pass http://54.241.16.194;
+		set $s3_bucket ec2-54-241-6-30.us-west-1.compute.amazonaws.com';
+		proxy_pass http://54.241.6.30:4000;
 	}
-}
-
-server {
-	listen 80;
-	server_name playtest.rust-lang.org ;
-	return 301 http://play.rust-lang.org;
 }
