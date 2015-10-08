@@ -2,8 +2,11 @@
 
 - name: Deploy the buildmaster
   hosts: buildmaster
-  remote_user: root
+  remote_user: ubuntu 
+  become: yes
+  become_method: sudo
 
   roles: 
     - ubuntu
-    - buildmaster
+    - { role: buildmaster,
+        hostname_prefix: "DEV"}
