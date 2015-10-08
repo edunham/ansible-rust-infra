@@ -1,7 +1,7 @@
 ---
 - name: Set hostname
   hostname: 
-      name=hostname_prefix + "_buildmaster"
+      name=hostname
 
 - name: Install prerequisite packages
   apt:

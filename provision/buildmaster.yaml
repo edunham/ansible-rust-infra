@@ -9,4 +9,4 @@
   roles: 
     - ubuntu
     - { role: buildmaster,
-        hostname_prefix: "DEV"}
+        hostname: "DEVbuildmaster"}
