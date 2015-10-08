@@ -174,8 +174,8 @@ server {
     }
 
     # Deprecated crates moved elsewhere
-    location ~ ^/threadpool {
-        return 301 http://frewsxcv.github.io$request_uri;
+    location ~ ^/threadpool(?<path>.*)$ {
+        return 301 http://frewsxcv.github.io/rust-threadpool$path;
     }
     location ~ ^/term {
         return 301 http://stebalien.github.io/doc$request_uri;
