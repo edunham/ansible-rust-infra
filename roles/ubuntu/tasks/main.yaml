@@ -1,0 +1,6 @@
+---
+- name: safe-upgrade system packages
+  apt:
+    update_cache: yes
+    upgrade: safe
+  when: ansible_os_family == "Debian"

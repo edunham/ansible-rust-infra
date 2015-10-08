@@ -6,4 +6,5 @@
   sudo_user: root 
 
   roles: 
+    - ubuntu
     - bastion

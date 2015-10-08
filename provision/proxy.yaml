@@ -7,4 +7,5 @@
   become_method: sudo
 
   roles: 
+    - ubuntu
     - proxy
