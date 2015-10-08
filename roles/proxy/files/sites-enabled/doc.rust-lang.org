@@ -34,106 +34,132 @@ server {
     # Proxy github rust-lang crates' documentation back to github
     location =/regex {
         include /etc/nginx/conf.d/github-proxy;
+        proxy_set_header       Host 'rust-lang-nursery.github.io';
         proxy_pass http://rust-lang-nursery.github.io/regex/;
     }
     location ~ ^/regex {
         include /etc/nginx/conf.d/github-proxy;
+        proxy_set_header       Host 'rust-lang-nursery.github.io';
         proxy_pass http://rust-lang-nursery.github.io/$request_uri;
     }
     location =/uuid {
         include /etc/nginx/conf.d/github-proxy;
+        proxy_set_header       Host 'rust-lang-nursery.github.io';
         proxy_pass http://rust-lang-nursery.github.io/uuid/;
     }
     location ~ ^/uuid {
         include /etc/nginx/conf.d/github-proxy;
+        proxy_set_header       Host 'rust-lang-nursery.github.io';
         proxy_pass http://rust-lang-nursery.github.io/$request_uri;
     }
     location =/time {
         include /etc/nginx/conf.d/github-proxy;
+        proxy_set_header       Host 'rust-lang-deprecated.github.io';
         proxy_pass http://rust-lang-deprecated.github.io/time/;
     }
     location ~ ^/time {
         include /etc/nginx/conf.d/github-proxy;
+        proxy_set_header       Host 'rust-lang-deprecated.github.io';
         proxy_pass http://rust-lang-deprecated.github.io/$request_uri;
     }
     location =/rustc-serialize {
         include /etc/nginx/conf.d/github-proxy;
-        proxy_pass http://rust-lang-deprecated.github.io/rustc-serialize/;
+        proxy_set_header       Host 'rust-lang-nursery.github.io';
+        proxy_pass http://rust-lang-nursery.github.io/rustc-serialize/;
     }
     location ~ ^/rustc-serialize {
         include /etc/nginx/conf.d/github-proxy;
-        proxy_pass http://rust-lang-deprecated.github.io/$request_uri;
+        proxy_set_header       Host 'rust-lang-nursery.github.io';
+        proxy_pass http://rust-lang-nursery.github.io/$request_uri;
     }
     location =/log {
         include /etc/nginx/conf.d/github-proxy;
+        proxy_set_header       Host 'rust-lang-nursery.github.io';
         proxy_pass http://rust-lang-nursery.github.io/log/;
     }
     location ~ ^/log {
         include /etc/nginx/conf.d/github-proxy;
+        proxy_set_header       Host 'rust-lang-nursery.github.io';
         proxy_pass http://rust-lang-nusery.github.io/$request_uri;
     }
     location =/getopts {
         include /etc/nginx/conf.d/github-proxy;
+        proxy_set_header       Host 'rust-lang-nursery.github.io';
         proxy_pass http://rust-lang-nursery.github.io/getopts/;
     }
     location ~ ^/getopts {
         include /etc/nginx/conf.d/github-proxy;
+        proxy_set_header       Host 'rust-lang-nursery.github.io';
         proxy_pass http://rust-lang-nursery.github.io/$request_uri;
     }
     location =/glob {
         include /etc/nginx/conf.d/github-proxy;
+        proxy_set_header       Host 'rust-lang-nursery.github.io';
         proxy_pass http://rust-lang-nursery.github.io/glob/;
     }
     location ~ ^/glob {
         include /etc/nginx/conf.d/github-proxy;
+        proxy_set_header       Host 'rust-lang-nursery.github.io';
         proxy_pass http://rust-lang-nursery.github.io/$request_uri;
     }
     location =/num {
         include /etc/nginx/conf.d/github-proxy;
+        proxy_set_header       Host 'rust-lang-deprecated.github.io';
         proxy_pass http://rust-lang-deprecated.github.io/num/;
     }
     location ~ ^/num {
         include /etc/nginx/conf.d/github-proxy;
+        proxy_set_header       Host 'rust-lang-deprecated.github.io';
         proxy_pass http://rust-lang-deprecated.github.io/$request_uri;
     }
     location =/libc {
         include /etc/nginx/conf.d/github-proxy;
+        proxy_set_header       Host 'rust-lang-nursery.github.io';
         proxy_pass http://rust-lang-nursery.github.io/libc/;
     }
     location ~ ^/libc {
         include /etc/nginx/conf.d/github-proxy;
+        proxy_set_header       Host 'rust-lang-nursery.github.io';
         proxy_pass http://rust-lang-nursery.github.io/$request_uri;
     }
     location =/bitflags {
         include /etc/nginx/conf.d/github-proxy;
+        proxy_set_header       Host 'rust-lang-nursery.github.io';
         proxy_pass http://rust-lang-nursery.github.io/bitflags/;
     }
     location ~ ^/bitflags {
         include /etc/nginx/conf.d/github-proxy;
+        proxy_set_header       Host 'rust-lang-nursery.github.io';
         proxy_pass http://rust-lang-nursery.github.io/$request_uri;
     }
     location =/rand {
         include /etc/nginx/conf.d/github-proxy;
+        proxy_set_header       Host 'rust-lang-nursery.github.io';
         proxy_pass http://rust-lang-nursery.github.io/rand/;
     }
     location ~ ^/rand {
         include /etc/nginx/conf.d/github-proxy;
+        proxy_set_header       Host 'rust-lang-nursery.github.io';
         proxy_pass http://rust-lang-nursery.github.io/$request_uri;
     }
     location ~ ^/tempdir {
         include /etc/nginx/conf.d/github-proxy;
+        proxy_set_header       Host 'rust-lang-nursery.github.io';
         proxy_pass http://rust-lang-nursery.github.io/$request_uri;
     }
     location =/tempdir {
         include /etc/nginx/conf.d/github-proxy;
+        proxy_set_header       Host 'rust-lang-nursery.github.io';
         proxy_pass http://rust-lang-nursery.github.io/tempdir/;
     }
     location ~ ^/net2-rs {
         include /etc/nginx/conf.d/github-proxy;
+        proxy_set_header       Host 'rust-lang-nursery.github.io';
         proxy_pass http://rust-lang-nursery.github.io/$request_uri;
     }
     location =/net2-rs {
         include /etc/nginx/conf.d/github-proxy;
+        proxy_set_header       Host 'rust-lang-nursery.github.io';
         proxy_pass http://rust-lang-nursery.github.io/net2-rs/;
     }
 
