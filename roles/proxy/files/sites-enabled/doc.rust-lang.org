@@ -56,14 +56,6 @@ server {
         include /etc/nginx/conf.d/github-proxy;
         proxy_pass http://rust-lang-deprecated.github.io/$request_uri;
     }
-    location =/semver {
-        include /etc/nginx/conf.d/github-proxy;
-        proxy_pass http://rust-lang-deprecated.github.io/semver/;
-    }
-    location ~ ^/semver {
-        include /etc/nginx/conf.d/github-proxy;
-        proxy_pass http://rust-lang-deprecated.github.io/$request_uri;
-    }
     location =/rustc-serialize {
         include /etc/nginx/conf.d/github-proxy;
         proxy_pass http://rust-lang-deprecated.github.io/rustc-serialize/;
