@@ -56,3 +56,14 @@ $ ansible-playbook provision/<host> --check # dry-run to see what would change
 $ ansible-playbook provision/<host>         # Actually make changes
 ```
 
+Note that the buildmasters are split into "devmaster" and "prodmaster". Both
+playbooks currently apply the same role, but pass a different hostname
+variable.
+
+#### Provisioning production from your laptop
+
+If you already have SSH access to all of the managed hosts, you can run
+Ansible locally as well! You'll need to create a `hosts` file in this
+directory by copying `hosts.example` and editing it with the appropriate
+information for how you connect to the managed hosts.  
+

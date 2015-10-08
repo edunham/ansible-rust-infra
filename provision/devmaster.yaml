@@ -1,0 +1,12 @@
+---
+
+- name: Deploy the development buildmaster
+  hosts: devmaster
+  remote_user: ubuntu 
+  become: yes
+  become_method: sudo
+
+  roles: 
+    - ubuntu
+    - { role: buildmaster,
+        hostname: "DEVbuildmaster"}
