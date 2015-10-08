@@ -45,6 +45,12 @@
       creates: /etc/nginx/ssl/nginx.key
       creates: /etc/nginx/ssl/nginx.crt
 
+- name: Copy enabled sites
+  copy:
+      src=sites-enabled/{{ item }}
+      dest=/etc/nginx/sites-enabled/{{ item }}
+  with_items: enabled_sites
+
 - name: Copy nginx config files
   copy:
       src=conf.d/{{ item }}

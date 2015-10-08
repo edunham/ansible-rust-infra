@@ -3,3 +3,10 @@ nginx_config_files:
     - github-proxy
     - rust-lang-org-ssl
     - s3-bucket-proxy
+
+enabled_sites:
+    - crater.rust-lang.org
+    - crates.io
+    - doc.rust-lang.org
+    - play.rust-lang.org
+    - www.rust-lang.org
