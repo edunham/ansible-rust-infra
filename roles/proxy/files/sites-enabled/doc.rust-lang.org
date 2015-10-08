@@ -162,6 +162,16 @@ server {
         proxy_set_header       Host 'rust-lang-nursery.github.io';
         proxy_pass http://rust-lang-nursery.github.io/$request_uri;
     }
+    location =/lazy-static.rs {
+        include /etc/nginx/conf.d/github-proxy;
+        proxy_set_header       Host 'rust-lang-nursery.github.io';
+        proxy_pass http://rust-lang-nursery.github.io/lazy-static.rs/;
+    }
+    location ~ ^/lazy-static.rs {
+        include /etc/nginx/conf.d/github-proxy;
+        proxy_set_header       Host 'rust-lang-nursery.github.io';
+        proxy_pass http://rust-lang-nursery.github.io/$request_uri;
+    }
 
     # Documentation which no longer needs to be indexed
     location ~ ^/0.([0-9])/.*/$ {
