@@ -128,6 +128,14 @@ server {
         include /etc/nginx/conf.d/github-proxy;
         proxy_pass http://rust-lang-nursery.github.io/tempdir/;
     }
+    location ~ ^/net2-rs {
+        include /etc/nginx/conf.d/github-proxy;
+        proxy_pass http://rust-lang-nursery.github.io/$request_uri;
+    }
+    location =/net2-rs {
+        include /etc/nginx/conf.d/github-proxy;
+        proxy_pass http://rust-lang-nursery.github.io/net2-rs/;
+    }
 
     # Documentation which no longer needs to be indexed
     location ~ ^/0.([0-9])/.*/$ {
