@@ -1,6 +1,6 @@
 ---
 - name: Set hostname
-  hostname: 
+  hostname:
       name=proxy
 
 - name: Install or update nginx and openssl
@@ -24,13 +24,6 @@
   args:
       chdir: /etc/nginx/ssl
       creates: /etc/nginx/ssl/dhparams.pem
-
-- name: Update /etc/nginx/sites-enabled/default
-  copy:
-      src=sites-enabled/default
-      dest=/etc/nginx/sites-enabled/default
-      owner={{ ansible_ssh_user }}
-      group={{ ansible_ssh_user }}
 
 - name: Create a SSL cert if it doesn't exist
   command: >
