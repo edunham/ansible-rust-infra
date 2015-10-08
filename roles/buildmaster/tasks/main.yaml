@@ -1,8 +1,4 @@
 ---
-- name: apt-get update
-  apt:
-      update_cache=yes
-
 - name: Install prerequisite packages
   apt:
       pkg={{ item }}
@@ -13,7 +9,6 @@
       - python-dev
       - python-setuptools
       - stunnel
-      # we need Git later and Ansible doesn't auto-install it
       - git
 
 - name: install Buildbot
@@ -22,8 +17,8 @@
 
 - name: Create buildbot user
   user:
-      name: "buildbot"
-      home: "/home/buildbot"
+      name: "rustbuild"
+      home: "/home/rustbuild"
       shell: /bin/bash
       createhome: yes
 
@@ -36,6 +31,6 @@
 - name: Start Buildbot
   command: buildbot start master
   args:
-      chdir: /home/buildbot/rust-buildbot
+      chdir: /home/rustbuild/rust-buildbot
   become: yes
-  become_user: buildbot
+  become_user: rustbuild 
