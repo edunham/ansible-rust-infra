@@ -50,7 +50,7 @@ server {
     }
     location =/time {
         include /etc/nginx/conf.d/github-proxy;
-          proxy_pass http://rust-lang-deprecated.github.io/time/;
+        proxy_pass http://rust-lang-deprecated.github.io/time/;
     }
     location ~ ^/time {
         include /etc/nginx/conf.d/github-proxy;
