@@ -39,6 +39,7 @@
   with_items: 
     - buildbot==0.8.12
     - boto
+    - pyopenssl
 
 - name: Create buildbot user
   user:
