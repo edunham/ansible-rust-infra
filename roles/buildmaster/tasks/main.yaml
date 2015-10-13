@@ -3,6 +3,13 @@
   hostname: 
       name={{ hostname }}
 
+- name: Tell /etc/hosts about the hostname
+  lineinfile:
+    dest=/etc/hosts
+    line="127.0.0.1 localhost {{hostname}}"
+    state=present
+    insertbefore=BOF
+
 - name: Install prerequisite packages
   apt:
       pkg={{ item }}
@@ -17,7 +24,10 @@
 
 - name: install Buildbot
   easy_install:
-      name: buildbot==0.8.12
+      name: "{{ item }}"
+  with_items:
+      - buildbot==0.8.12
+      - boto
 
 - name: Create buildbot user
   user:
@@ -29,8 +39,10 @@
 - name: Clone the Buildbot configs
   git:
       repo='https://github.com/rust-lang/rust-buildbot.git'
-      dest='/home/buildbot/rust-buildbot'
+      dest='/home/rustbuild/rust-buildbot'
       accept_hostkey=yes
+  become: yes
+  become_user: rustbuild
 
 - name: Start Buildbot
   command: buildbot start master
