@@ -9,4 +9,5 @@
   roles: 
     - ubuntu
     - { role: buildmaster,
-        hostname: "DEVbuildmaster"}
+        hostname: "DEVbuildmaster",
+        noclone: True}

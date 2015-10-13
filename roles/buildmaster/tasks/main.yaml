@@ -33,6 +33,7 @@
       accept_hostkey=yes
   become: yes
   become_user: rustbuild
+  when: {{ noclone }} == False
 
 - name: Create virtualenv and install packages 
   pip:

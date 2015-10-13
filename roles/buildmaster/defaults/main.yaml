@@ -1,2 +1,3 @@
 ---
-hostname: "bastion"  
+hostname: "bastion"
+noclone: False 
