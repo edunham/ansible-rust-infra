@@ -21,7 +21,7 @@
       - python-setuptools
       - python-virtualenv
       - stunnel
-      - PyOpenSSL 
+      - python-openssl 
       - git
 
 - name: Clone the Buildbot configs
