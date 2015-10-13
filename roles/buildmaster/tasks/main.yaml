@@ -22,6 +22,8 @@
       - python-virtualenv
       - stunnel
       - python-openssl 
+      - libffi-dev
+      - libssl-dev
       - git
 
 - name: Clone the Buildbot configs
@@ -40,6 +42,7 @@
     - buildbot==0.8.12
     - boto
     - pyopenssl
+    - cryptography
 
 - name: Create buildbot user
   user:
