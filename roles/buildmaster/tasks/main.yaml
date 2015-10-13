@@ -1,6 +1,6 @@
 ---
 - name: Set hostname
-  hostname: 
+  hostname:
       name={{ hostname }}
 
 - name: Tell /etc/hosts about the hostname
@@ -19,22 +19,9 @@
       - python-pip
       - python-dev
       - python-setuptools
+      - python-virtualenv
       - stunnel
       - git
-
-- name: install Buildbot
-  easy_install:
-      name: "{{ item }}"
-  with_items:
-      - buildbot==0.8.12
-      - boto
-
-- name: Create buildbot user
-  user:
-      name: "rustbuild"
-      home: "/home/rustbuild"
-      shell: /bin/bash
-      createhome: yes
 
 - name: Clone the Buildbot configs
   git:
@@ -44,9 +31,24 @@
   become: yes
   become_user: rustbuild
 
+- name: Create virtualenv and install packages 
+  pip:
+    virtualenv=/home/rustbuild/buildmaster-venv
+    name="{{ item }}"
+  with_items: 
+    - buildbot==0.8.12
+    - boto
+
+- name: Create buildbot user
+  user:
+      name: "rustbuild"
+      home: "/home/rustbuild"
+      shell: /bin/bash
+      createhome: yes
+
 - name: Start Buildbot
-  command: buildbot start master
+  command: /home/rustbuild/buildmaster-venv/bin/buildbot start master
   args:
       chdir: /home/rustbuild/rust-buildbot
   become: yes
-  become_user: rustbuild 
+  become_user: rustbuild
