@@ -172,6 +172,16 @@ server {
         proxy_set_header       Host 'rust-lang-nursery.github.io';
         proxy_pass http://rust-lang-nursery.github.io/$request_uri;
     }
+    location =/rust-unix-socket {
+        include /etc/nginx/conf.d/github-proxy;
+        proxy_set_header       Host 'rust-lang-nursery.github.io';
+        proxy_pass http://rust-lang-nursery.github.io/rust-unix-socket/;
+    }
+    location ~ ^/rust-unix-socket {
+        include /etc/nginx/conf.d/github-proxy;
+        proxy_set_header       Host 'rust-lang-nursery.github.io';
+        proxy_pass http://rust-lang-nursery.github.io/$request_uri;
+    }
 
     # Deprecated crates moved elsewhere
     location ~ ^/threadpool(?<path>.*)$ {
