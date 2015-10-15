@@ -172,12 +172,12 @@ server {
         proxy_set_header       Host 'rust-lang-nursery.github.io';
         proxy_pass http://rust-lang-nursery.github.io/$request_uri;
     }
-    location =/rust-unix-socket {
+    location =/unix-socket {
         include /etc/nginx/conf.d/github-proxy;
         proxy_set_header       Host 'rust-lang-nursery.github.io';
-        proxy_pass http://rust-lang-nursery.github.io/rust-unix-socket/;
+        proxy_pass http://rust-lang-nursery.github.io/unix-socket/;
     }
-    location ~ ^/rust-unix-socket {
+    location ~ ^/unix-socket {
         include /etc/nginx/conf.d/github-proxy;
         proxy_set_header       Host 'rust-lang-nursery.github.io';
         proxy_pass http://rust-lang-nursery.github.io/$request_uri;
