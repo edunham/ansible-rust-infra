@@ -10,15 +10,22 @@
     state=present
     insertbefore=BOF
 
+- name: Create Rustbuild user
+  user:
+      name: "rustbuild"
+      home: "/home/rustbuild"
+      shell: /bin/bash
+      createhome: yes
+
 - name: Install prerequisite packages
   apt:
       pkg={{ item }}
       state=present
+      update_cache=yes
   with_items:
       - python
       - python3
       - python-pip
-      - python3-pip
       - python-dev
       - python-setuptools
       - python-virtualenv
@@ -48,6 +55,9 @@
 
 # Separate because Homu is python3
 - name: Create a python3 virtualenv for Homu
+  command: virtualenv -p python3 /home/rustbuild/homu-venv
+  args: 
+    creates: /home/rustbuild/homu-venv
 
 - name: Install Homu to his virtualenv
   pip:
@@ -63,13 +73,6 @@
     - boto
     - pyopenssl
     - cryptography
-
-- name: Create buildbot user
-  user:
-      name: "rustbuild"
-      home: "/home/rustbuild"
-      shell: /bin/bash
-      createhome: yes
 
 - name: Start Buildbot
   command: /home/rustbuild/buildmaster-venv/bin/buildbot start master
