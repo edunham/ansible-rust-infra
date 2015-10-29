@@ -1,0 +1,13 @@
+---
+
+- name: Install Python + Pip
+  homebrew:
+    - name=python
+    - state=present
+    - update_homebrew=yes
+    - upgrade_all=yes
+
+- name: Install virtualenv
+  pip:
+    - name='virtualenv'
+
