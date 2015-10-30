@@ -73,6 +73,7 @@
     - boto
     - pyopenssl
     - cryptography
+    - -e git+https://github.com/edunham/v2_rust_metadata@master#egg=rust-v2-metadata
 
 - name: Start Buildbot
   command: /home/rustbuild/buildmaster-venv/bin/buildbot start master
