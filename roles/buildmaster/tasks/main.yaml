@@ -1,15 +1,4 @@
 ---
-- name: Set hostname
-  hostname:
-      name={{ hostname }}
-
-- name: Tell /etc/hosts about the hostname
-  lineinfile:
-    dest=/etc/hosts
-    line="127.0.0.1 localhost {{hostname}}"
-    state=present
-    insertbefore=BOF
-
 - name: Create Rustbuild user
   user:
       name: "rustbuild"
@@ -58,6 +47,8 @@
   command: virtualenv -p python3 /home/rustbuild/homu-venv
   args: 
     creates: /home/rustbuild/homu-venv
+  become: yes
+  become_user: rustbuild
 
 - name: Install Homu to his virtualenv
   pip:
@@ -74,6 +65,8 @@
     - pyopenssl
     - cryptography
     - -e git+https://github.com/edunham/v2_rust_metadata@master#egg=rust-v2-metadata
+  become: yes
+  become_user: rustbuild
 
 - name: Start Buildbot
   command: /home/rustbuild/buildmaster-venv/bin/buildbot start master
