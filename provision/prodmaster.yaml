@@ -7,6 +7,6 @@
   become_method: sudo
 
   roles: 
-    - ubuntu
-    - { role: buildmaster,
+    - { role: ubuntu,
         hostname: "PRODbuildmaster"}
+    - buildmaster

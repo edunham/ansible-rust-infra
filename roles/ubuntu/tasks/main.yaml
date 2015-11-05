@@ -4,3 +4,15 @@
     update_cache: yes
     upgrade: safe
   when: ansible_os_family == "Debian"
+
+- name: Set hostname
+  hostname:
+      name={{ hostname }}
+
+- name: Tell /etc/hosts about the hostname
+  lineinfile:
+    dest=/etc/hosts
+    line="127.0.0.1 localhost {{hostname}}"
+    state=present
+    insertbefore=BOF
+
