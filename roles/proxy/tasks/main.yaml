@@ -1,8 +1,4 @@
 ---
-- name: Set hostname
-  hostname:
-      name=proxy
-
 - name: Install or update nginx and openssl
   apt:
       pkg={{ item }}

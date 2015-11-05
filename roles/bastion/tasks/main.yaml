@@ -55,10 +55,3 @@
     key="{{ item.key }}"
     state=present
   with_items: account_names
-
-# hostnamectl comes from systemd-services package, installed by default      
-- name: Set the hostname
-  hostname:
-    name=bastion
-  become: yes
-  when: ansible_os_family == 'Debian'
