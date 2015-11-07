@@ -74,3 +74,8 @@
       chdir: /home/rustbuild/rust-buildbot
   become: yes
   become_user: rustbuild
+
+# TODO FIXME: pastebin tail of Buildbot log and dump it in IRC if buildbot start
+# failed
+
+# TODO FIXME: Start stunnels if necessary

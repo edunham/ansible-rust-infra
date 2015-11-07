@@ -46,6 +46,8 @@
       dest=/etc/nginx/conf.d/{{ item }}
   with_items: nginx_config_files
 
+# TODO FIXME copy and decrypt cert
+
 - name: Start nginx service
   service:
       name=nginx

@@ -55,3 +55,8 @@
     key="{{ item.key }}"
     state=present
   with_items: account_names
+
+# TODO FIXME: need IDS
+
+# TODO FIXME IRC hook to pull from specific Git branch and run Ansible in a
+# screen 

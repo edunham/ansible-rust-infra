@@ -16,3 +16,5 @@
     state=present
     insertbefore=BOF
 
+# TODO FIXME set firewall rules to only allow desired ports, possibly reading
+# from current AWS configs, to future-proof against ever leaving AWS
