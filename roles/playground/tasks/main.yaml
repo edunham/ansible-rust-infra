@@ -1,5 +1,4 @@
 ---
-- include: fake_arch.yaml
 - include: playpen.yaml
 - name: Clone my copy of Playground (rust-playpen)
   git: repo=https://github.com/edunham/rust-playpen.git

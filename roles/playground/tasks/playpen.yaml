@@ -4,8 +4,8 @@
       repo=https://github.com/thestinger/playpen.git
       dest=/home/{{ ansible_ssh_user }}/playpen_source
 - name: Install prerequisite packages for building playpen
-  apt:
-       pkg={{ item }}
+  pacman:
+       name={{ item }}
        state=present
   with_items:
        - make
