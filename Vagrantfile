@@ -4,7 +4,7 @@
 # The "2" is Vagrant API/syntax version. Don't touch.
 Vagrant.configure(2) do |config|
   # https://atlas.hashicorp.com/search.
-  config.vm.box = "precise32"
+  config.vm.box = "precise64"
   config.vm.box_url = "http://files.vagrantup.com/precise64.box"
   #config.vm.network :public_network
   config.vm.define "bastion" do |bastion|
@@ -21,9 +21,9 @@ Vagrant.configure(2) do |config|
         ansible.extra_vars = { ansible_ssh_user: 'vagrant' }
     end
   end
-  config.vm.define "buildmaster" do |buildmaster|
-    buildmaster.vm.provision "ansible" do |ansible|
-        ansible.playbook = "provision/buildmaster.yaml"
+  config.vm.define "prodmaster" do |prodmaster|
+    prodmaster.vm.provision "ansible" do |ansible|
+        ansible.playbook = "provision/prodmaster.yaml"
         ansible.sudo = true
         ansible.extra_vars = { ansible_ssh_user: 'vagrant' }
     end
@@ -33,6 +33,15 @@ Vagrant.configure(2) do |config|
         ansible.playbook = "provision/ndk.yaml"
         ansible.sudo = true
         ansible.extra_vars = { ansible_ssh_user: 'vagrant' }
+    end
+  end
+  config.vm.define "playground" do |playground|
+    playground.vm.box = "arch"
+    playground.vm.box_url = "http://cloud.terry.im/vagrant/archlinux-x86_64.box"
+    playground.vm.provision "ansible" do |ansible|
+      ansible.playbook = "provision/playground.yaml"
+      ansible.sudo = true
+      ansible.extra_vars = { ansible_ssh_user: 'vagrant' }
     end
   end
 end

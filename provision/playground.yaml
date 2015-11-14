@@ -1,7 +1,6 @@
 ---
 - name: Deploy the playground
-  hosts: play 
-  remote_user: root
+  hosts: playground 
 
   roles: 
     - playground
