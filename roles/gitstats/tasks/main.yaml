@@ -1,0 +1,49 @@
+---
+
+- name: Install prerequisite packages
+  apt:
+      pkg={{ item }}
+      state=present
+      update_cache=yes
+  with_items:
+      - git
+      - python
+      - python3
+      - python-pip
+      - python-dev
+      - python-setuptools
+      - python-virtualenv
+
+- name: Clone gitstat
+  git:
+      repo='https://github.com/youknowone/gitstat.git'
+      dest='/home/{{ansible_ssh_user}}/gitstat'
+      accept_hostkey=yes
+
+- name: Clone orglog 
+  git:
+      repo='https://github.com/edunham/orglog.git'
+      dest='/home/{{ansible_ssh_user}}/orglog'
+      accept_hostkey=yes
+
+- name: Install gitstat deps to venv
+  pip: 
+    virtualenv='/home/{{ansible_ssh_user}}/gitstat-venv'
+    name="-r /home/{{ansible_ssh_user}}/gitstat/requirement.txt"
+
+- name: Install orglog deps to venv
+  pip: 
+    virtualenv='/home/{{ansible_ssh_user}}/gitstat-venv'
+    name="-r /home/{{ansible_ssh_user}}/orglog/requirement.txt"
+
+- name: Place gitstat config file
+  copy: 
+    src=gitstat_settings.py
+    dest='/home/{{ansible_ssh_user}}/gitstat/settings.py'
+
+- name: Add gitstat+orglog invocation to crontab
+  cron: 
+    state=present
+    special_time=daily
+    job='/home/{{ansible_ssh_user}}/gitstat-venv/bin/python /home/{{ansible_ssh_user}}/orglog/stat.sh; mv index.html {{www}}'
+
