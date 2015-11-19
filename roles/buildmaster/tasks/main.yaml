@@ -24,15 +24,6 @@
       - libssl-dev
       - git
 
-- name: Clone Homu
-  git:
-      repo='https://github.com/barosl/homu.git'
-      dest='/home/rustbuild/homu'
-      accept_hostkey=yes
-  become: yes
-  become_user: rustbuild
-  when: noclone == False
-
 - name: Clone the Buildbot configs
   git:
       repo='https://github.com/rust-lang/rust-buildbot.git'
