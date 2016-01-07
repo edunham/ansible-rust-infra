@@ -1,12 +1,28 @@
 ---
-- include: playpen.yaml
 - name: Clone my copy of Playground (rust-playpen)
   git: repo=https://github.com/edunham/rust-playpen.git
        dest=/home/{{ ansible_ssh_user }}/playground_source
        accept_hostkey=yes
 
-- name: Install debootstrap
-  apt:
-       name=debootstrap
-- name: Run the Ubuntu-flavored playground init script
-  command: /home/{{ansible_ssh_user }}/playground_source/ubuntu.sh
+- name: Install Python dependencies
+  pip: 
+    name={{ item}}
+  with_items: 
+    - pyyaml
+    - requests
+    - irc
+
+- name: Install libseccomp
+  pacman:
+    name=libseccomp
+    state=latest
+    update_cache=yes
+
+- name: Place secret files
+  copy:
+    src={{ item }}
+    dest=/home/{{ansible_ssh_user}}/playground_source/{{ item }}
+  with_items: 
+    - shorten_key.py
+    - irc.yaml
+
