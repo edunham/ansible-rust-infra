@@ -36,7 +36,7 @@ Vagrant.configure(2) do |config|
     end
   end
   config.vm.define "playground" do |playground|
-    playground.vm.box = "arch"
+    playground.vm.box = "terrywang/archlinux"
     playground.vm.box_url = "http://cloud.terry.im/vagrant/archlinux-x86_64.box"
     playground.vm.provision "ansible" do |ansible|
       ansible.playbook = "provision/playground.yaml"
