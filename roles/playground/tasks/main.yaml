@@ -1,7 +1,20 @@
 ---
+- name: Install Git
+  pacman:
+    name={{item}}
+    state=latest
+  with_items:
+    - git
+    - python2-pip
+    - arch-install-scripts
+    - python
+    - python-pip
+
+# TODO: pip2 install --upgrade pip
+
 - name: Clone my copy of Playground (rust-playpen)
   git: repo=https://github.com/edunham/rust-playpen.git
-       dest=/home/{{ ansible_ssh_user }}/playground_source
+       dest=/root/rust-playpen
        accept_hostkey=yes
 
 - name: Install Python dependencies
@@ -11,6 +24,9 @@
     - pyyaml
     - requests
     - irc
+    - bottle
+    - pygments
+
 
 - name: Install libseccomp
   pacman:
@@ -21,8 +37,29 @@
 - name: Place secret files
   copy:
     src={{ item }}
-    dest=/home/{{ansible_ssh_user}}/playground_source/{{ item }}
+    dest=/root/rust-playpen/{{ item }}
   with_items: 
     - shorten_key.py
     - irc.yaml
 
+- name: Place systemd scripts
+  copy:
+    src={{item}}
+    dest=/etc/systemd/system/{{item}}
+  with_items: 
+    - rust-playpen-irc.service
+    - rust-playpen-web.service
+    - rust-playpen-update.service
+    - rust-playpen-update.timer
+
+# TODO place status.sh
+
+- name: make packages directory
+  file: 
+    path=/root/packages
+    state=directory
+
+- name: clone playpen
+  git: repo=https://github.com/thestinger/playpen.git
+    dest=/root/packages/
+    accept_hostkey=yes
