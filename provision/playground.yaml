@@ -1,6 +1,6 @@
 ---
 - name: Deploy the playground
-  hosts: playground 
+  hosts: play 
 
   roles: 
     - playground
