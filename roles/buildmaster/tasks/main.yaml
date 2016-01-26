@@ -46,6 +46,11 @@
     virtualenv=/home/rustbuild/homu-venv
     name="-e git+https://github.com/barosl/homu@15ea10b8226a0544d92e4c3f8065705eae51b957#egg=homu-master"
 
+- name: Place Homu's config file
+  copy: 
+    src=cfg.toml
+    dest=/home/rustbuild/homu/cfg.toml
+
 - name: Create Buildbot virtualenv and install packages 
   pip:
     virtualenv=/home/rustbuild/buildmaster-venv
@@ -65,6 +70,15 @@
       chdir: /home/rustbuild/rust-buildbot
   become: yes
   become_user: rustbuild
+
+- name: Configure crontab to start buildbot 
+  cron:
+    special_time=reboot
+    user="rustbuild"
+    job={{item}}
+  with_items:
+    - "cd ~/rust-buildbot && stunnel4 rust-buildbot-master-stunnel.conf"
+    - "cd ~/rustbuildbot/master && /home/rustbuild/buildmaster-venv/bin/buildbot start"
 
 # TODO FIXME: pastebin tail of Buildbot log and dump it in IRC if buildbot start
 # failed
