@@ -1,36 +1,38 @@
 ---
-
 - name: Install Required Packages
   homebrew:
-    - name={{ item}}
-    - state=present
-    - update_homebrew=yes
-    - upgrade_all=yes
-  with_items: 
+    name={{ item }}
+    state=present
+    update_homebrew=yes
+    upgrade_all=yes
+  with_items:
     - python
-    - pip
+    - stunnel
     - git
+    - cmake
 
-- name: Install virtualenv
+- name: Install buildbot-slave system-wide
   pip:
-    - name='virtualenv'
+    name='buildbot-slave'
 
-- name: Create Rustbuild user
-  user:
-    - name='rustbuild'
-    - createhome=yes
-    - state=present
+- name: Make symlinks
+#  # for i in gcc cc g++ c++; do ln -s /usr/local/bin/ccache /usr/local/bin/$i; done
+    become: yes
+    become_user: administrator
+
+- name: Fix $PATH
+# $ echo 'export PATH=/usr/local/bin:$PATH' >>~/.bashrc
+# $ echo '. ~/.bashrc' >~/.bash_profile
+
 
 - name: Clone the Buildbot configs
   git:
       repo='https://github.com/rust-lang/rust-buildbot.git'
       dest='/home/rustbuild/rust-buildbot'
       accept_hostkey=yes
-  become: yes
-  become_user: rustbuild
 
 - name: Create venv for buildslave
   pip: 
-    - virtualenv={{venv_path}}
-    - name='buildbot'
+    virtualenv={{venv_path}}
+    name='buildbot'
 # TODO: open ports for buildslave
