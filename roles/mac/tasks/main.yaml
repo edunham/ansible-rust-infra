@@ -15,12 +15,11 @@
   pip:
     name='buildbot-slave'
 
-- name: Make symlinks
-#  # for i in gcc cc g++ c++; do ln -s /usr/local/bin/ccache /usr/local/bin/$i; done
-    become: yes
-    become_user: administrator
+#- name: Make symlinks
+#    become: yes
+#    become_user: administrator
 
-- name: Fix $PATH
+#- name: Fix $PATH
 # $ echo 'export PATH=/usr/local/bin:$PATH' >>~/.bashrc
 # $ echo '. ~/.bashrc' >~/.bash_profile
 
