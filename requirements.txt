@@ -1,0 +1,11 @@
+Jinja2
+MarkupSafe
+PyYAML
+ansible
+ansible-lint
+argparse
+ecdsa
+paramiko
+pexpect
+pycrypto
+wsgiref
