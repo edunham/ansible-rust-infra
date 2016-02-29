@@ -2,8 +2,8 @@
 # https://github.com/geerlingguy/ansible-role-homebrew
 - name: geerlingguy.homebrew
   src: git+https://github.com/geerlingguy/ansible-role-homebrew.git
-  version: 5e6fa3a5590158492751d621fb68d9eec6607c76
-
+  version: 261d7e61d686a786d663f0df31fb2c1e1edcf084
+ 
 - name: edunham.xcode
   src: git+https://github.com/edunham/ansible-role-xcode.git
   version: master
