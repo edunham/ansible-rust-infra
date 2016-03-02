@@ -1,10 +1,13 @@
 ---
-- name: Deploy the Mac
-  hosts: mac
+- name: Deploy the Macs
+  hosts: prod-macs
   roles:
     - edunham.xcode 
     - {role: geerlingguy.homebrew,
        homebrew_install_path: '/usr/local/homebrew',
-       homebrew_brew_bin_path: '/usr/local/brewbin',
-       skip_cask: true}
+       homebrew_brew_bin_path: '/usr/bin',
+       homebrew_installed_packages: ['python', 'stunnel', 'git', 'cmake'],
+       homebrew_taps: [],
+       homebrew_cask_apps: [],
+       }
     - mac 
