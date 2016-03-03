@@ -41,6 +41,8 @@ Vagrant.configure(2) do |config|
     playground.vm.provision "ansible" do |ansible|
       ansible.playbook = "provision/playground.yaml"
       ansible.sudo = true
+      ansible.verbose = 'vvvv'
+      #ansible.raw_ssh_args = ["-o UserKnownHostsFile=/dev/null"]
       ansible.extra_vars = { ansible_ssh_user: 'vagrant' }
     end
   end
