@@ -48,4 +48,20 @@
   copy: 
     src=rust-buildbot-slave-stunnel-final.conf
     dest=/Users/administrator/rust-buildbot/rust-buildbot-slave-stunnel-final.conf
-    
+
+- name: Set up firewall rules to only allow ssh from bastion
+  copy:
+    src=pf.conf
+    dest=/etc/pf.conf
+  become: yes    
+  register: pfconf
+
+- name: enable firewall
+  command: pfctl -e
+  become: yes
+  when: pfconf.changed
+
+- name: flush firewall rules (this kills the connection)
+  command: pfctl -Fa -f /etc/pf.conf
+  become: yes
+  when: pfconf.changed
