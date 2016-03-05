@@ -11,27 +11,41 @@
     - git
     - cmake
 
+- name: Download Python pkg
+  get_url: 
+    url="https://www.python.org/ftp/python/2.7.11/python-2.7.11-macosx10.6.pkg"
+    dest="/Users/administrator/python.pkg"
+
+- name: Install latest Python
+  command: installer -pkg python.pkg -target /
+  args:
+    creates: /usr/local/bin/python
+  become: yes
+
+- name: Link Python stuff to default path
+  file: 
+    src="/Library/Frameworks/Python.framework/Versions/2.7/bin/{{item}}"
+    dest="/usr/local/bin/{{item}}"
+    state=link
+  with_items:
+    - pip
+    - virtualenv
+
+- name: Upgrade pip
+  command: /usr/local/bin/pip install --upgrade pip
+
 - name: Install buildbot-slave system-wide
-  pip:
-    name='buildbot-slave'
-
-#- name: Make symlinks
-#    become: yes
-#    become_user: administrator
-
-#- name: Fix $PATH
-# $ echo 'export PATH=/usr/local/bin:$PATH' >>~/.bashrc
-# $ echo '. ~/.bashrc' >~/.bash_profile
-
+  command: /usr/local/bin/pip install buildbot-slave virtualenv
 
 - name: Clone the Buildbot configs
   git:
       repo='https://github.com/rust-lang/rust-buildbot.git'
-      dest='/home/rustbuild/rust-buildbot'
+      dest='/Users/administrator/rust-buildbot'
       accept_hostkey=yes
+      force=yes
 
-- name: Create venv for buildslave
-  pip: 
-    virtualenv={{venv_path}}
-    name='buildbot'
-# TODO: open ports for buildslave
+- name: Pretend to have run setup-slave.sh
+  copy: 
+    src=rust-buildbot-slave-stunnel-final.conf
+    dest=/Users/administrator/rust-buildbot/rust-buildbot-slave-stunnel-final.conf
+    
