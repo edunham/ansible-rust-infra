@@ -1,0 +1,4 @@
+---
+
+venv_path: "/Users/administrator/buildslave_venv"
+stunnel_conf_path: "/Users/administrator/rust-buildbot/rust-buildbot-slave-stunnel-final.conf"

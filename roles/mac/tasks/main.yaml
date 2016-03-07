@@ -47,10 +47,10 @@
 - name: Pretend to have run setup-slave.sh, Place stunnel conf
   copy: 
     src=rust-buildbot-slave-stunnel-final.conf
-    dest=/Users/administrator/rust-buildbot/rust-buildbot-slave-stunnel-final.conf
+    dest="{{stunnel_conf_path}}"
 
 - name: setup-slave, Start stunnel
-  command: stunnel /Users/administrator/rust-buildbot/rust-buildbot-slave-stunnel-final.conf
+  command: "stunnel {{stunnel_conf_path}}"
 
 - name: setup-slave, Nuke old artifacts
   command: rm -f /Users/administrator/rust-buildbot/slave/buildbot.tac* /Users/administrator/rust-buildbot/slave/twistd.* /Users/administrator/rust-buildbot/slave/info/admin /Users/administrator/rust-buildbot/slave/info/host
