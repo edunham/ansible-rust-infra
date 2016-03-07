@@ -39,7 +39,7 @@
 
 - name: Link buildbot-slave to the path
   file: 
-    src="/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/{{item}}"
+    src="{{ sitepackages }}/{{item}}"
     dest="/usr/local/bin/{{item}}"
     state=link
     force=yes
@@ -66,7 +66,7 @@
   command: rm -f /Users/administrator/rust-buildbot/slave/buildbot.tac* /Users/administrator/rust-buildbot/slave/twistd.* /Users/administrator/rust-buildbot/slave/info/admin /Users/administrator/rust-buildbot/slave/info/host
 
 - name: setup-slave, (re)create bulidbot slave
-  command: "{{site-packages}}/buildslave create-slave --force /Users/administrator/rust-buildbot/slave localhost:9987 {{ ansible_default_ipv4.address }} {{buildslave_password}}"
+  command: "{{ sitepackages }}/buildslave create-slave --force /Users/administrator/rust-buildbot/slave localhost:9987 {{ ansible_default_ipv4.address }} {{buildslave_password}}"
 
 - name: set admin email
   lineinfile: 
