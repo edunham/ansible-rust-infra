@@ -1,11 +1,21 @@
 [mac]
 111.22.33.44 ansible_ssh_user=administrator ansible_ssh_pass=password ansible_sudo_pass=password
 
+[prod-macs]
+100.200.300.40 ansible_ssh_pass='asdf1234' ansible_sudo_pass='asdf1234' buildslave_password='1234asdf'
+100.200.300.41 ansible_ssh_pass='hjkl0987' ansible_sudo_pass='hjkl0987' buildslave_password='0987hjkl'
+
+[prod-macs:vars]
+ansible_ssh_user=administrator
+
 [proxy]
 111.22.33.45 ansible_ssh_user=root
 
-[prodmaster]
+[buildmaster]
 111.22.33.46
+
+[buildmaster:vars]
+buildbot_logins={'user':'ponies', 'guest':'passw0rd'} 
 
 [devmaster]
 111.22.33.47

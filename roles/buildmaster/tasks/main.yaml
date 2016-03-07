@@ -44,7 +44,7 @@
 - name: Install Homu to his virtualenv
   pip:
     virtualenv=/home/rustbuild/homu-venv
-    name="-e git+https://github.com/barosl/homu@15ea10b8226a0544d92e4c3f8065705eae51b957#egg=homu-master"
+    name="-e git+https://github.com/barosl/homu@master#egg=homu-master"
 
 - name: Place Homu's config file
   copy: 
@@ -79,6 +79,13 @@
   with_items:
     - "cd ~/rust-buildbot && stunnel4 rust-buildbot-master-stunnel.conf"
     - "cd ~/rustbuildbot/master && /home/rustbuild/buildmaster-venv/bin/buildbot start"
+
+- name: Template secrets into passwords.py
+  template: 
+    src=templates/passwords.py.j2
+    dest=/home/rustbuild/rust-buildbot/master/passwords.py
+    mode=0640
+    user=rustbuild
 
 # TODO FIXME: pastebin tail of Buildbot log and dump it in IRC if buildbot start
 # failed
