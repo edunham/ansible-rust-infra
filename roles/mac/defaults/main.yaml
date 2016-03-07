@@ -2,3 +2,4 @@
 
 venv_path: "/Users/administrator/buildslave_venv"
 stunnel_conf_path: "/Users/administrator/rust-buildbot/rust-buildbot-slave-stunnel-final.conf"
+site-packages: "/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages"
