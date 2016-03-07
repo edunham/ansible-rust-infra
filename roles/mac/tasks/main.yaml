@@ -51,6 +51,7 @@
 
 - name: setup-slave, Start stunnel
   command: "stunnel {{stunnel_conf_path}}"
+  ignore_errors: yes
 
 - name: setup-slave, Nuke old artifacts
   command: rm -f /Users/administrator/rust-buildbot/slave/buildbot.tac* /Users/administrator/rust-buildbot/slave/twistd.* /Users/administrator/rust-buildbot/slave/info/admin /Users/administrator/rust-buildbot/slave/info/host
