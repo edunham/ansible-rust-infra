@@ -35,7 +35,7 @@
   command: /usr/local/bin/pip install --upgrade pip
 
 - name: Install buildbot-slave system-wide
-  command: pip install buildbot-slave
+  command: /usr/local/bin/pip install buildbot-slave
 
 - name: Link buildbot-slave to the path
   file: 
@@ -44,7 +44,6 @@
     state=link
     force=yes
   with_items:
-    - buildbot
     - buildslave
 
 - name: Clone the Buildbot configs
