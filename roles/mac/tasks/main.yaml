@@ -35,13 +35,14 @@
   command: /usr/local/bin/pip install --upgrade pip
 
 - name: Install buildbot-slave system-wide
-  command: /usr/local/bin/pip install buildbot-slave virtualenv
+  command: pip install buildbot-slave
 
 - name: Link buildbot-slave to the path
   file: 
     src="/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/{{item}}"
     dest="/usr/local/bin/{{item}}"
     state=link
+    force=yes
   with_items:
     - buildbot
     - buildslave
