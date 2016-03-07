@@ -67,6 +67,7 @@
 
 - name: setup-slave, (re)create bulidbot slave
   command: "{{ sitepackages }}/buildslave create-slave --force /Users/administrator/rust-buildbot/slave localhost:9987 {{ ansible_default_ipv4.address }} {{buildslave_password}}"
+  become: yes
 
 - name: set admin email
   lineinfile: 
