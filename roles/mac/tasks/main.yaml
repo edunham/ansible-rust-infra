@@ -44,10 +44,35 @@
       accept_hostkey=yes
       force=yes
 
-- name: Pretend to have run setup-slave.sh
+- name: Pretend to have run setup-slave.sh: Place stunnel conf
   copy: 
     src=rust-buildbot-slave-stunnel-final.conf
     dest=/Users/administrator/rust-buildbot/rust-buildbot-slave-stunnel-final.conf
+
+- name: setup-slave: Start stunnel
+  command: stunnel /Users/administrator/rust-buildbot/rust-buildbot-slave-stunnel-final.conf
+
+- name: setup-slave: Nuke old artifacts
+  command: rm -f /Users/administrator/rust-buildbot/slave/buildbot.tac* /Users/administrator/rust-buildbot/slave/twistd.* /Users/administrator/rust-buildbot/slave/info/admin /Users/administrator/rust-buildbot/slave/info/host
+
+- name: setup-slave: (re)create bulidbot slave
+  command: "buildslave create-slave --force slave localhost:9987
+{{inventory_hostname}} {{buildslave_password}}"
+
+- name: set admin email
+  lineinfile: 
+    dest=/Users/administrator/rust-buildbot/slave/info/admin
+    line= "admin@rust-lang.org"
+    state=present
+    insertafter=EOF
+
+- name: set hostname
+  lineinfile: 
+    dest=/Users/administrator/rust-buildbot/slave/info/host
+    line= "{{inventory_hostname}}"
+    state=present
+    insertafter=EOF
+
 
 - name: Set up firewall rules to only allow ssh from bastion
   copy:
