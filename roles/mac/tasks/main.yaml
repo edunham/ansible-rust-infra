@@ -37,15 +37,6 @@
 - name: Install buildbot-slave system-wide
   command: /usr/local/bin/pip install buildbot-slave
 
-- name: Link buildbot-slave to the path
-  file: 
-    src="{{ sitepackages }}/{{item}}"
-    dest="/usr/local/bin/{{item}}"
-    state=link
-    force=yes
-  with_items:
-    - buildslave
-
 - name: Clone the Buildbot configs
   git:
       repo='https://github.com/rust-lang/rust-buildbot.git'
@@ -63,7 +54,7 @@
   ignore_errors: yes
 
 - name: setup-slave, Nuke old artifacts
-  command: rm -f /Users/administrator/rust-buildbot/slave/buildbot.tac* /Users/administrator/rust-buildbot/slave/twistd.* /Users/administrator/rust-buildbot/slave/info/admin /Users/administrator/rust-buildbot/slave/info/host
+  command: rm -rf /Users/administrator/rust-buildbot/slave
 
 - name: setup-slave, (re)create bulidbot slave
   command: "{{ sitepackages }}/buildslave create-slave --force /Users/administrator/rust-buildbot/slave localhost:9987 {{ ansible_default_ipv4.address }} {{buildslave_password}}"
