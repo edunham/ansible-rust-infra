@@ -7,14 +7,18 @@
 
 - name: Set hostname
   hostname:
-      name={{ hostname }}
+      name="{{ hostname }}"
 
 - name: Tell /etc/hosts about the hostname
   lineinfile:
     dest=/etc/hosts
-    line="127.0.0.1 localhost {{hostname}}"
+    line="127.0.0.1 localhost {{ hostname }}"
     state=present
     insertbefore=BOF
+
+- name: Set unattended-upgrades
+  command: "dpkg-reconfigure --priority=low unattended-upgrades"
+  become: yes
 
 # TODO FIXME set firewall rules to only allow desired ports, possibly reading
 # from current AWS configs, to future-proof against ever leaving AWS
