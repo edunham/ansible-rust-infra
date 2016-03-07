@@ -38,7 +38,7 @@
   command: /usr/local/bin/pip install buildbot-slave virtualenv
 
 - name: Link buildbot-slave to the path
-   file: 
+  file: 
     src="/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/{{item}}"
     dest="/usr/local/bin/{{item}}"
     state=link
