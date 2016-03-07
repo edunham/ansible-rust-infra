@@ -57,8 +57,7 @@
   command: rm -f /Users/administrator/rust-buildbot/slave/buildbot.tac* /Users/administrator/rust-buildbot/slave/twistd.* /Users/administrator/rust-buildbot/slave/info/admin /Users/administrator/rust-buildbot/slave/info/host
 
 - name: setup-slave, (re)create bulidbot slave
-  command: "buildslave create-slave --force slave localhost:9987
-{{inventory_hostname}} {{buildslave_password}}"
+  command: "buildslave create-slave --force /Users/administrator/rust-buildbot/slave localhost:9987 {{inventory_hostname}} {{buildslave_password}}"
 
 - name: set admin email
   lineinfile: 
