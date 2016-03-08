@@ -1,8 +1,8 @@
 ---
 - name: Deploy the Macs
-  hosts: prod-macs
+  hosts: mac:prod-macs
   roles:
-    - edunham.xcode 
+    - edunham.xcode
     - {role: geerlingguy.homebrew,
        homebrew_install_path: '/usr/local/homebrew',
        homebrew_brew_bin_path: '/usr/bin',
@@ -10,4 +10,4 @@
        homebrew_taps: [],
        homebrew_cask_apps: [],
        }
-    - mac 
+    - mac
