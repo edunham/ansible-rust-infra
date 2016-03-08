@@ -5,6 +5,12 @@
     upgrade: safe
   when: ansible_os_family == "Debian"
 
+- name: Install unattended-upgrades
+  apt:
+    pkg=unattended-upgrades
+    state=present
+    update_cache=yes
+
 - name: Set hostname
   hostname:
       name="{{ hostname }}"
