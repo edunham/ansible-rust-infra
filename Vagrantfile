@@ -11,6 +11,7 @@ Vagrant.configure(2) do |config|
     bastion.vm.provision "ansible" do |ansible|
         ansible.playbook = "provision/bastion.yaml"
         ansible.sudo = true
+        ansible.verbose = 'vvvv'
         ansible.extra_vars = { ansible_ssh_user: 'vagrant' }
     end
   end
@@ -18,6 +19,7 @@ Vagrant.configure(2) do |config|
     proxy.vm.provision "ansible" do |ansible|
         ansible.playbook = "provision/proxy.yaml"
         ansible.sudo = true
+        # ansible.verbose = 'vvvv'
         ansible.extra_vars = { ansible_ssh_user: 'vagrant' }
     end
   end
@@ -25,7 +27,9 @@ Vagrant.configure(2) do |config|
     prodmaster.vm.provision "ansible" do |ansible|
         ansible.playbook = "provision/prodmaster.yaml"
         ansible.sudo = true
-        ansible.extra_vars = { ansible_ssh_user: 'vagrant' }
+        ansible.host_key_checking = false
+        # ansible.verbose = 'vvvv'
+        ansible.extra_vars = { ansible_ssh_user: 'vagrant'}
     end
   end
   config.vm.define "ndk" do |ndk|
@@ -41,7 +45,7 @@ Vagrant.configure(2) do |config|
     playground.vm.provision "ansible" do |ansible|
       ansible.playbook = "provision/playground.yaml"
       ansible.sudo = true
-      ansible.verbose = 'vvvv'
+      # ansible.verbose = 'vvvv'
       #ansible.raw_ssh_args = ["-o UserKnownHostsFile=/dev/null"]
       ansible.extra_vars = { ansible_ssh_user: 'vagrant' }
     end
