@@ -41,6 +41,7 @@
   git:
       repo='https://github.com/rust-lang/rust-buildbot.git'
       dest='/Users/administrator/rust-buildbot'
+      version=master
       accept_hostkey=yes
       force=yes
 
@@ -54,7 +55,9 @@
   ignore_errors: yes
 
 - name: setup-slave, Nuke old artifacts
-  command: rm -rf /Users/administrator/rust-buildbot/slave
+  file:
+    path=/Users/administrator/rust-buildbot/slave
+    state=absent
 
 - name: setup-slave, (re)create buildbot slave
   command: "{{ sitepackages }}/buildslave create-slave --force /Users/administrator/rust-buildbot/slave localhost:9987 {{ ansible_default_ipv4.address }} {{buildslave_password}}"
