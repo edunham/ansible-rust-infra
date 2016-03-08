@@ -22,9 +22,22 @@
     state=present
     insertbefore=BOF
 
-- name: Set unattended-upgrades
-  command: "dpkg-reconfigure --priority=low unattended-upgrades"
-  become: yes
+# thanks to https://github.com/jnv/ansible-role-unattended-upgrades
+- name: create APT auto-upgrades configuration
+  copy:
+    src=auto-upgrades
+    dest=/etc/apt/apt.conf.d/20auto-upgrades
+    owner=root
+    group=root
+    mode=0644
+
+- name: create unattended-upgrades configuration
+  copy:
+    src=unattended-upgrades
+    dest=/etc/apt/apt.conf.d/50unattended-upgrades
+    owner=root
+    group=root
+    mode=0644
 
 # TODO FIXME set firewall rules to only allow desired ports, possibly reading
 # from current AWS configs, to future-proof against ever leaving AWS
