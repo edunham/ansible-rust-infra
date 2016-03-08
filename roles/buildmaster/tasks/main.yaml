@@ -19,7 +19,7 @@
       - python-setuptools
       - python-virtualenv
       - stunnel
-      - python-openssl 
+      - python-openssl
       - libffi-dev
       - libssl-dev
       - git
@@ -28,6 +28,7 @@
   git:
       repo='https://github.com/rust-lang/rust-buildbot.git'
       dest='/home/rustbuild/rust-buildbot'
+      version=master
       accept_hostkey=yes
   become: yes
   become_user: rustbuild
@@ -36,7 +37,7 @@
 # Separate because Homu is python3
 - name: Create a python3 virtualenv for Homu
   command: virtualenv -p python3 /home/rustbuild/homu-venv
-  args: 
+  args:
     creates: /home/rustbuild/homu-venv
   become: yes
   become_user: rustbuild
@@ -47,15 +48,15 @@
     name="-e git+https://github.com/barosl/homu@master#egg=homu-master"
 
 - name: Place Homu's config file
-  copy: 
+  copy:
     src=cfg.toml
     dest=/home/rustbuild/homu/cfg.toml
 
-- name: Create Buildbot virtualenv and install packages 
+- name: Create Buildbot virtualenv and install packages
   pip:
     virtualenv=/home/rustbuild/buildmaster-venv
     name="{{ item }}"
-  with_items: 
+  with_items:
     - buildbot==0.8.12
     - boto
     - pyopenssl
@@ -71,7 +72,7 @@
   become: yes
   become_user: rustbuild
 
-- name: Configure crontab to start buildbot 
+- name: Configure crontab to start buildbot
   cron:
     special_time=reboot
     user="rustbuild"
@@ -81,7 +82,7 @@
     - "cd ~/rustbuildbot/master && /home/rustbuild/buildmaster-venv/bin/buildbot start"
 
 - name: Template secrets into passwords.py
-  template: 
+  template:
     src=templates/passwords.py.j2
     dest=/home/rustbuild/rust-buildbot/master/passwords.py
     mode=0640
