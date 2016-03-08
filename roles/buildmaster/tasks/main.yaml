@@ -47,6 +47,11 @@
     virtualenv=/home/rustbuild/homu-venv
     name="-e git+https://github.com/barosl/homu@master#egg=homu-master"
 
+- name: Create homu directory
+  file:
+    path=/home/rustbuild/homu
+    state=directory
+
 - name: Place Homu's config file
   copy:
     src=cfg.toml
