@@ -12,7 +12,7 @@
     - cmake
 
 - name: Download Python pkg
-  get_url: 
+  get_url:
     url="https://www.python.org/ftp/python/2.7.11/python-2.7.11-macosx10.6.pkg"
     dest="/Users/administrator/python.pkg"
 
@@ -23,7 +23,7 @@
   become: yes
 
 - name: Link Python stuff to default path
-  file: 
+  file:
     src="/Library/Frameworks/Python.framework/Versions/2.7/bin/{{item}}"
     dest="/usr/local/bin/{{item}}"
     state=link
@@ -45,7 +45,7 @@
       force=yes
 
 - name: Pretend to have run setup-slave.sh, Place stunnel conf
-  copy: 
+  copy:
     src=rust-buildbot-slave-stunnel-final.conf
     dest="{{stunnel_conf_path}}"
 
@@ -62,17 +62,15 @@
   become_method: sudo
 
 - name: set admin email
-  lineinfile: 
+  lineinfile:
     dest=/Users/administrator/rust-buildbot/slave/info/admin
-    line= "admin@rust-lang.org"
-    state=present
+    line= 'admin@rust-lang.org'
     insertafter=EOF
 
 - name: set hostname
-  lineinfile: 
+  lineinfile:
     dest=/Users/administrator/rust-buildbot/slave/info/host
     line= "{{inventory_hostname}}"
-    state=present
     insertafter=EOF
 
 
@@ -80,7 +78,7 @@
   copy:
     src=pf.conf
     dest=/etc/pf.conf
-  become: yes    
+  become: yes
   register: pfconf
 
 - name: enable firewall
