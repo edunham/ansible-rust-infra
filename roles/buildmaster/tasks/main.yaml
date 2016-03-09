@@ -97,6 +97,15 @@
   become: yes
   become_user: rustbuild
 
+- name: Template values into .s3cfg
+  template:
+    src=s3cfg.j2
+    dest=/home/rustbuild/.s3cfg
+    mode=0640
+  become: yes
+  become_user: rustbuild
+
+
 
 - name: Start Buildbot
   command: /home/rustbuild/buildmaster-venv/bin/buildbot start master

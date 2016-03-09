@@ -1,5 +1,9 @@
 ---
 
+s3cfg:
+  secret_key: "secrets"
+  access_key: "secrets"
+
 buildbot_logins:
   any-build: "secret"
   rust: "secret"
