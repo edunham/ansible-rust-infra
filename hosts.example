@@ -15,7 +15,17 @@ ansible_ssh_user=administrator
 111.22.33.46
 
 [buildmaster:vars]
-buildbot_logins={'user':'ponies', 'guest':'passw0rd'} 
+buildbot_logins={'user':'ponies',
+                 'guest':'passw0rd'}
+
+master_cfg_txt={'env': 'prod',
+                'homu_secret':'asdfghjkl',
+                'master_addy':'00.11.22.33:9988',
+                'rust_org': 'rust-lang',
+                'cargo_org': 'rust-lang',
+                'packaging_org': 'rust-lang',
+                's3_name': 'static-rust-lang-org',
+                'public_dist':'https://static.rust-lang.org'}
 
 [devmaster]
 111.22.33.47
