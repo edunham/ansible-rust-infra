@@ -1,0 +1,150 @@
+[github]
+access_token = "{{ homu.gh_access_token }} "
+app_client_id = "{{ homu.app_client_id }}"
+app_client_secret = "{{ homu.app_client_secret }}"
+
+[web]
+port = {{ homu.port }}
+
+[repo.rust]
+owner = "rust-lang"
+name = "rust"
+reviewers = [
+    "Aatch",
+    "BrendanEich",
+    "BurntSushi",
+    "FlaPer87",
+    "Gankro",
+    "ILyoan",
+    "Manishearth",
+    "alexcrichton",
+    "anasazi",
+    "andreasgal",
+    "apasel422",
+    "arielb1",
+    "aturon",
+    "bblum",
+    "bjz",
+    "bkoropoff",
+    "bluss",
+    "bors",
+    "brson",
+    "bstrie",
+    "catamorphism",
+    "cmr",
+    "dotdash",
+    "eddyb",
+    "eholk",
+    "elliottslaughter",
+    "erickt",
+    "froystig",
+    "huonw",
+    "jakub-",
+    "japaric",
+    "jbclements",
+    "jdm",
+    "jld",
+    "jroesch",
+    "jruderman",
+    "jseyfried",
+    "kballard",
+    "kimundi",
+    "kmcallister",
+    "lht",
+    "lkuper",
+    "luqmana",
+    "marijnh",
+    "metajack",
+    "michaelwoerister",
+    "msullivan",
+    "nagisa",
+    "nick29581",
+    "nikomatsakis",
+    "nrc",
+    "olsonjeffery",
+    "paulstansifer",
+    "pcwalton",
+    "pnkfelix",
+    "sanxiyn",
+    "sfackler",
+    "steveklabnik",
+    "thestinger",
+    "toddaaro",
+    "vadimcn",
+    "yichoi",
+    "z0w0",
+]
+
+[repo.rust.buildbot]
+url = "http://buildbot.rust-lang.org"
+secret = "{{ homu.rust_buildbot_secret }}"
+username = "{{ homu.rust_buildbot_username }}"
+password = "{{ buildbot_logins[homu.rust_buildbot_username] }}"
+builders = [
+    "auto-mac-32-opt",
+    "auto-mac-64-opt",
+    "auto-mac-64-nopt-t",
+    "auto-mac-ios-opt",
+
+    "auto-linux-32-opt",
+    "auto-linux-32-nopt-t",
+    "auto-linux-64-opt",
+    "auto-linux-64-debug-opt",
+    "auto-linux-musl-64-opt",
+    "auto-linux-64-nopt-t",
+    "auto-linux-64-x-android-t",
+    "auto-linux-cross-opt",
+
+    "auto-win-gnu-32-opt",
+    "auto-win-gnu-32-nopt-t",
+    "auto-win-gnu-64-opt",
+    "auto-win-gnu-64-nopt-t",
+    "auto-win-msvc-32-opt",
+    "auto-win-msvc-64-opt",
+]
+try_builders = [
+    "try-bsd",
+    "try-linux",
+    "try-mac",
+    "try-win-gnu-32",
+    "try-win-gnu-64",
+]
+
+[repo.rust.github]
+secret = "{{ homu.rust_github_secret }}"
+
+[repo.cargo]
+
+owner = "rust-lang"
+name = "cargo"
+reviewers = [
+    "alexcrichton",
+    "brson",
+    "carllerche",
+    "huonw",
+    "steveklabnik",
+    "wycats",
+]
+
+[repo.cargo.buildbot]
+url = "http://buildbot.rust-lang.org"
+secret = "{{ homu.cargo_buildbot_secret }}"
+username = "{{ homu.cargo_buildbot_username }}"
+password = "{{ buildbot_logins[homu.cargo_buildbot_username] }}"
+builders = [
+    "cargo-linux-32",
+    "cargo-linux-64",
+    "cargo-mac-32",
+    "cargo-mac-64",
+    "cargo-win-gnu-32",
+    "cargo-win-gnu-64",
+    "cargo-win-msvc-64",
+    "cargo-win-msvc-32",
+]
+
+[repo.cargo.branch]
+auto = "auto-cargo"
+
+[repo.cargo.github]
+secret = "{{ homu.cargo_github_secret }}"
+

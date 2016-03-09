@@ -53,10 +53,13 @@
     path=/home/rustbuild/homu
     state=directory
 
-- name: Place Homu's config file
-  copy:
-    src=cfg.toml
+- name: Make Homu's config file
+  template:
+    src=homu.cfg.j2
     dest=/home/rustbuild/homu/cfg.toml
+    mode=0640
+  become: yes
+  become_user: rustbuild
 
 - name: Create Buildbot virtualenv and install packages
   pip:

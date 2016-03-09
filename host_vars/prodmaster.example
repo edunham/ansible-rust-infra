@@ -1,5 +1,17 @@
 ---
 
+homu:
+  port: 7942
+  gh_access_token: "secret"
+  app_client_id: "secret"
+  app_client_secret: "secret"
+  rust_buildbot_secret: "secret"
+  rust_buildbot_username: "user"
+  rust_github_secret: "secret"
+  cargo_buildbot_secret: "secret"
+  cargo_buildbot_username: "user"
+  cargo_github_secret: "secret"
+
 s3cfg:
   secret_key: "secrets"
   access_key: "secrets"
