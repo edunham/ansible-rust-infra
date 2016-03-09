@@ -12,17 +12,18 @@
       state=present
       update_cache=yes
   with_items:
-      - python
-      - python3
-      - python-pip
-      - python-dev
-      - python-setuptools
-      - python-virtualenv
-      - stunnel
-      - python-openssl
+      - git
       - libffi-dev
       - libssl-dev
-      - git
+      - python
+      - python-dev
+      - python-openssl
+      - python-pip
+      - python-setuptools
+      - python-virtualenv
+      - python3
+      - s3cmd
+      - stunnel
 
 - name: Clone the Buildbot configs
   git:
