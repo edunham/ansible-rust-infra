@@ -27,6 +27,60 @@ master_cfg_txt={'env': 'prod',
                 's3_name': 'static-rust-lang-org',
                 'public_dist':'https://static.rust-lang.org'}
 
+mac_slaves={'mac3': 'password',
+            'mac4': 'password'}
+
+ios_slaves={'mac5':'password',
+            'mac6':'password'}
+
+docker_slaves={ 'linux3':  'password',
+                'linux4':  'password',
+                'linux5':  'password',
+                'linux6':  'password',
+                #'linux7': 'password',
+                #'linux8': 'password'}
+
+lincross_slaves={'lincross1': 'password'}
+64_android_slaves={'linux-64-x-android-t': 'password'}
+arm_android_slaves={'dist-arm-android': 'password'}
+linux_snap_slaves={'linux-snap': 'password'}
+
+win_slaves={'win1':  'password',
+            'win2':  'password',
+            'win3':  'password',
+            'win4':  'password',
+            'win5':  'password',
+            'win6':  'password',
+            'win7':  'password',
+            'win8':  'password',
+            'win9':  'password',
+            'win10': 'password',
+            'win11': 'password',
+            'win12': 'password',
+            'win13': 'password',
+            'win14': 'password',
+            'win15': 'password',
+            'win16': 'password'}
+
+
+windist_slaves={'windist1': 'password',
+                'windist2': 'password',
+                'windist3': 'password',
+                'windist4': 'password'}
+
+bsd_slaves={'bsd1': 'password',
+            'bsd2': 'password',
+            'bsd3': 'password',
+            'bsd4': 'password',
+            'bsd5': 'password'}
+
+community_slaves={'bitrig1': 'password',
+                  'freebsd10_32-1': 'password',
+                  'freebsd10_64-1': 'password',
+                  'dragonflybsd-64-opt': 'password',
+                  'openbsd-64-opt': 'password'}
+
+
 [devmaster]
 111.22.33.47
 

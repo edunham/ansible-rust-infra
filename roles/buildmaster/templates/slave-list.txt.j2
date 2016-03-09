@@ -1,0 +1,60 @@
+users = [
+    {% for user in buildbot_logins %}
+    ('{{user}}','{{buildbot_logins['user']}}'),
+    {% endfor %}
+]
+# This file is a slave-name / password file that should
+# not be checked in to the git repository for rust buildbot,
+# just held in the master work-dir on the host it's running on
+
+# these two are on brson's desk
+{% for slavename in mac_slaves %}
+{{slavename}} {{ mac_slaves[slavename] }} max_builds=1 snap=true dist=true
+{% endfor %}
+
+# these bots seem to generate snapshot binaries that don't work on all systems
+{% for slavename in ios_slaves %}
+{{slavename}} {{ ios_slaves[slavename] }} max_builds=2 ios = true
+{% endfor %}
+
+# these are aws latent, all of which use the same AMI with some docker image running inside
+{% for slavename in docker_slaves %}
+{{slavename}} {{ docker_slaves[slavename] }} docker=alexcrichton/rust-slave-linux:2016-02-19 ami=ami-8d94e5ed instance_type=c3.2xlarge max_builds=3
+{% endfor %}
+
+{% for slavename in lincross_slaves %}
+{{slavename}} {{ lincross_slaves[slavename] }} docker=alexcrichton/rust-slave-linux-cross:2016-02-18 ami=ami-8d94e5ed instance_type=c3.2xlarge max_builds=4 dist=true
+{% endfor %}
+
+{% for slavename in 64_android__slaves %}
+{{slavename}} {{ 64_android__slaves[slavename] }} docker=alexcrichton/rust-slave-android:2016-02-18c ami=ami-8d94e5ed instance_type=c3.2xlarge max_builds=1 special=true
+{% endfor %}
+
+{% for slavename in arm_android_slaves %}
+{{slavename}} {{ arm_android_slaves[slavename] }} docker=alexcrichton/rust-slave-android:2016-02-18c ami=ami-8d94e5ed instance_type=c3.2xlarge max_builds=3 special=true dist=true
+{% endfor %}
+
+{% for slavename in linux_snap_slaves %}
+{{slavename}} {{ linux_snap_slaves[slavename] }} docker=alexcrichton/rust-slave-dist:2016-03-01 ami=ami-8d94e5ed instance_type=c3.2xlarge max_builds=3 snap=true dist=true special=true
+{% endfor %}
+
+# currently builds=1 because we're killing stuff indiscriminantly
+# to fix https://github.com/rust-lang/rust/issues/22628
+{% for slavename in win_slaves %}
+{{slavename}} {{ win_slaves[slavename] }} ami=ami-232e5e43 instance_type=c3.2xlarge max_builds=3 snap=true
+{% endfor %}
+
+# bug #21434 makes max_builds=1 fail for dist builds because DirectoryUpload hits locking exceptions
+{% for slavename in windist_slaves %}
+{{slavename}} {{ windist_slaves[slavename] }} ami=ami-232e5e43 instance_type=c3.2xlarge max_builds=1 snap=true dist=true special=true
+{% endfor %}
+
+# these 4 are aws latent
+{% for slavename in bsd_slaves %}
+#{{slavename}} {{ bsd_slaves[slavename] }} ami=ami-b54f5af0 instance_type=c3.2xlarge max_builds=3 snap=true
+{% endfor %}
+
+# community-maintained (dhuseby)
+{% for slavename in community_slaves %}
+{{slavename}} {{ community_slaves[slavename] }} max_builds=2 snap=true
+{% endfor %}
