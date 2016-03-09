@@ -75,21 +75,18 @@
     src=passwords.py.j2
     dest=/home/rustbuild/rust-buildbot/master/passwords.py
     mode=0640
-    user=rustbuild
 
 - name: Template values into master.cfg.txt
   template:
     src=master.cfg.txt.j2
     dest=/home/rustbuild/rust-buildbot/master/master.cfg.txt
     mode=0640
-    user=rustbuild
 
 - name: Template values into slave-list.txt
   template:
     src=slave-list.txt.j2
     dest=/home/rustbuild/rust-buildbot/master/slave-list.txt
     mode=0640
-    user=rustbuild
 
 - name: Start Buildbot
   command: /home/rustbuild/buildmaster-venv/bin/buildbot start master

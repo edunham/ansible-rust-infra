@@ -1,0 +1,80 @@
+---
+
+buildbot_logins:
+  any-build: "secret"
+  rust: "secret"
+
+master_cfg_txt:
+  env: "prod"
+  homu_secret: "secret"
+  master_addy: "00.11.22.33:9988"
+  rust_org: "rust-lang"
+  buildbot_org: "rust-lang"
+  cargo_org: "rust-lang"
+  packaging_org: "rust-lang"
+  s3_name: "static-rust-lang-org"
+  public_dist: "https://static.rust-lang.org"
+
+mac_slaves:
+  mac3: "secret"
+  mac4: "secret"
+
+ios_slaves:
+  mac5: "secret"
+  mac6: "secret"
+
+docker_slaves:
+  linux3: "secret"
+  linux4: "secret"
+  linux5: "secret"
+  linux6: "secret"
+  # linux7: "secret"
+  # linux8: "secret"
+
+
+lincross_slaves:
+  lincross1: "secret"
+android_slaves:
+  linux-64-x-android-t: "secret"
+arm_android_slaves:
+  dist-arm-android: "secret"
+linux_snap_slaves:
+  linux-snap: "secret"
+
+win_slaves:
+  win1: "secret"
+  win2: "secret"
+  win3: "secret"
+  win4: "secret"
+  win5: "secret"
+  win6: "secret"
+  win7: "secret"
+  win8: "secret"
+  win9: "secret"
+  win10: "secret"
+  win11: "secret"
+  win12: "secret"
+  win13: "secret"
+  win14: "secret"
+  win15: "secret"
+  win16: "secret"
+
+windist_slaves:
+  windist1: "secret"
+  windist2: "secret"
+  windist3: "secret"
+  windist4: "secret"
+
+bsd_slaves:
+  bsd1: "secret"
+  bsd2: "secret"
+  bsd3: "secret"
+  bsd4: "secret"
+  bsd5: "secret"
+
+community_slaves:
+  bitrig1: "secret"
+  freebsd10_32-1: "secret"
+  freebsd10_64-1: "secret"
+  dragonflybsd-64-opt: "secret"
+  openbsd-64-opt: "secret"

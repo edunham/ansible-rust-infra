@@ -1,8 +1,3 @@
-users = [
-    {% for user in buildbot_logins %}
-    ('{{user}}','{{buildbot_logins['user']}}'),
-    {% endfor %}
-]
 # This file is a slave-name / password file that should
 # not be checked in to the git repository for rust buildbot,
 # just held in the master work-dir on the host it's running on
@@ -26,8 +21,8 @@ users = [
 {{slavename}} {{ lincross_slaves[slavename] }} docker=alexcrichton/rust-slave-linux-cross:2016-02-18 ami=ami-8d94e5ed instance_type=c3.2xlarge max_builds=4 dist=true
 {% endfor %}
 
-{% for slavename in 64_android__slaves %}
-{{slavename}} {{ 64_android__slaves[slavename] }} docker=alexcrichton/rust-slave-android:2016-02-18c ami=ami-8d94e5ed instance_type=c3.2xlarge max_builds=1 special=true
+{% for slavename in android_slaves %}
+{{slavename}} {{ android_slaves[slavename] }} docker=alexcrichton/rust-slave-android:2016-02-18c ami=ami-8d94e5ed instance_type=c3.2xlarge max_builds=1 special=true
 {% endfor %}
 
 {% for slavename in arm_android_slaves %}

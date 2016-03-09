@@ -1,8 +1,6 @@
 ---
-
 - name: Deploy the production buildmaster
   hosts: prodmaster
-  remote_user: ubuntu
   become: yes
   become_method: sudo
 
