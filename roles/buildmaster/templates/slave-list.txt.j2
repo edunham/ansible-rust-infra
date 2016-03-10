@@ -9,7 +9,7 @@
 
 # these bots seem to generate snapshot binaries that don't work on all systems
 {% for slavename in ios_slaves %}
-{{slavename}} {{ ios_slaves[slavename] }} max_builds=2 ios = true
+{{slavename}} {{ ios_slaves[slavename] }} max_builds=2 ios=true
 {% endfor %}
 
 # these are aws latent, all of which use the same AMI with some docker image running inside

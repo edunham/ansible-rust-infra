@@ -1,5 +1,12 @@
 ---
 
+aws_creds:
+  access_key: "secret"
+  secret_key: "secret"
+
+cf_invalidate:
+  cf_distribution: "secret"
+
 homu:
   port: 7942
   gh_access_token: "secret"
@@ -11,10 +18,6 @@ homu:
   cargo_buildbot_secret: "secret"
   cargo_buildbot_username: "user"
   cargo_github_secret: "secret"
-
-s3cfg:
-  secret_key: "secrets"
-  access_key: "secrets"
 
 buildbot_logins:
   any-build: "secret"

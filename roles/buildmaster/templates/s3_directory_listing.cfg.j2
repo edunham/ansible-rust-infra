@@ -1,0 +1,47 @@
+[bucket]
+# Must be specified:
+name   = "static-rust-lang-org"
+region = "us-west-1"
+access_key = "{{ aws_creds.access_key }}" # Can alternatively be defined through AWS_ACCESS_KEY_ID environment
+                        # variable
+secret_key = "{{ aws_creds.secret_key }}" # Can alternatively be defined through AWS_SECRET_ACCESS_KEY
+                        # environment variable
+
+# Optional (default values listed):
+prefix = "dist/"            # Only files with this prefix will be listed;
+path_separator = "/"   # Specify, if anything other than / is used to denote path hierarchy.
+                       # \ is common on windows for example;
+base_url = "" # Base URL for links. Example values
+              # * `https://bucketname.s3.amazonaws.com`
+              # * `https://static.example.com`.
+              # Defaults to empty string and links will be relative rather
+              # than absolute.
+              # *DO NOT* add a trailing slash.
+
+
+# Any of the sections below are optional. There may be arbitrarily many such sections.
+[output.webindex]
+type = "html"                     # Output type defaults to html (other valid choices are
+                                  # json and txt)
+extra_head = ""                   # Extra HTML to be included into <head>.
+list_zero_sized = false           # List files and directories with 0 size. Generally useless,
+                                  # since it also lists duplicate directories… i think?
+file_sort_key = "name"            # Sort by the key. Valid (meaningful) values: 'name', 'size',
+                                  # 'mdate'.
+reverse_files = false             # Reverse the order of files
+# entry_tpl = DEFAULT_ENTRY_TPL   # Change HTML output for each file row;
+# directory_tpl = DEFAULT_DIR_TPL # Change HTML output for directories;
+# body_tpl = DEFAULT_BODY_TPL     # Change HTML output for body;
+
+[output.macinereadable1]
+type = "json"
+pretty = true                     # Output is prettily formatted json
+
+[output.delimitedvalues]
+type = "txt"                      # Output delimiter-delimited columns
+delimiter = ","
+file_fields = ["path",            # List of file fields to output
+               "size",
+               "mdate"]
+filename = "index.txt"            # Output filename
+

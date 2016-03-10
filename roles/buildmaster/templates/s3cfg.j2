@@ -1,5 +1,5 @@
 [default]
-access_key = {{ s3cfg['access_key'] }}
+access_key = {{ aws_creds.access_key }}
 bucket_location = US
 cloudfront_host = cloudfront.amazonaws.com
 default_mime_type = binary/octet-stream
@@ -33,7 +33,7 @@ proxy_port = 0
 recursive = False
 recv_chunk = 4096
 reduced_redundancy = False
-secret_key = {{ s3cfg['secret_key'] }}
+secret_key = {{ aws_creds.secret_key }}
 send_chunk = 4096
 simpledb_host = sdb.amazonaws.com
 skip_existing = False

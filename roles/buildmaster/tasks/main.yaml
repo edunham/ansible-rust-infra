@@ -22,6 +22,7 @@
       - python-setuptools
       - python-virtualenv
       - python3
+      - ruby
       - s3cmd
       - stunnel
 
@@ -52,6 +53,8 @@
   file:
     path=/home/rustbuild/homu
     state=directory
+  become: yes
+  become_user: rustbuild
 
 - name: Make Homu's config file
   template:
@@ -66,11 +69,11 @@
     virtualenv=/home/rustbuild/buildmaster-venv
     name="{{ item }}"
   with_items:
-    - buildbot==0.8.12
+    - buildbot==0.8.10
+    - twisted==14.0.0
     - boto
     - pyopenssl
     - cryptography
-    - -e git+https://github.com/edunham/v2_rust_metadata@master#egg=rust-v2-metadata
   become: yes
   become_user: rustbuild
 
@@ -81,7 +84,6 @@
     mode=0640
   become: yes
   become_user: rustbuild
-
 
 - name: Template values into master.cfg.txt
   template:
@@ -108,6 +110,19 @@
   become: yes
   become_user: rustbuild
 
+- name: Make .ec2 directory
+  file:
+    path=/home/rustbuild/.ec2
+    state=directory
+    owner="rustbuild"
+
+- name: Put AWS creds where Buildbot wants them
+  template:
+    src=aws_id.j2
+    dest=/home/rustbuild/.ec2/aws_id
+    mode=0640
+  become: yes
+  become_user: rustbuild
 
 
 - name: Start Buildbot
@@ -125,7 +140,42 @@
   with_items:
     - "cd ~/rust-buildbot && stunnel4 rust-buildbot-master-stunnel.conf"
     - "cd ~/rustbuildbot/master && /home/rustbuild/buildmaster-venv/bin/buildbot start"
-# TODO FIXME: pastebin tail of Buildbot log and dump it in IRC if buildbot start
-# failed
+
+- name: Place invalidate.sh and update-rust-dist-index.sh in homedir
+  copy:
+    src="{{ item }}"
+    dest="/home/rustbuild/{{ item }}"
+    owner='rustbuild'
+  with_items:
+    - invalidate.sh
+    - update-rust-dist-index.sh
+
+- name: Clone s3 invalidator repo
+  git:
+      repo='https://github.com/nagisa/s3-directory-listing.git'
+      dest='/home/rustbuild/s3-directory-listing'
+      version=master
+      accept_hostkey=yes
+  become: yes
+  become_user: rustbuild
+
+- name: Template s3 invalidator config file
+  template:
+    src=s3_directory_listing.cfg.j2
+    dest=/home/rustbuild/s3-directory-listing/config.toml
+    mode=0640
+  become: yes
+  become_user: rustbuild
+
+- name: Create crontab entries to run dist update and invalidation
+  cron:
+    name="Run {{ item }}"
+    state=present
+    job="{{ item }}"
+    user="rustbuild"
+    hour=13
+  with_items:
+    - "sh ~/invalidate.sh"
+    - "sh ~/update-rust-dist-index.sh"
 
 # TODO FIXME: Start stunnels if necessary
