@@ -38,7 +38,7 @@
     virtualenv="/Users/administrator/buildslave-venv"
 
 - name: Install buildbot-slave to venv
-   pip:
+  pip:
     name=buildbot-slave
     virtualenv="/Users/administrator/buildslave-venv"
 
