@@ -31,11 +31,16 @@
     - pip
     - virtualenv
 
-- name: Upgrade pip
-  command: /usr/local/bin/pip install --upgrade pip
+- name: Create buildslave venv & upgrade pip
+  pip:
+    name=pip
+    extra_args="--upgrade"
+    virtualenv="/Users/administrator/buildslave-venv"
 
-- name: Install buildbot-slave system-wide
-  command: /usr/local/bin/pip install buildbot-slave
+- name: Install buildbot-slave to venv
+   pip:
+    name=buildbot-slave
+    virtualenv="/Users/administrator/buildslave-venv"
 
 - name: Clone the Buildbot configs
   git:
@@ -60,7 +65,7 @@
     state=absent
 
 - name: setup-slave, (re)create buildbot slave
-  command: "{{ sitepackages }}/buildslave create-slave --force /Users/administrator/rust-buildbot/slave localhost:9987 {{ ansible_default_ipv4.address }} {{buildslave_password}}"
+  command: "/Users/administrator/buildslave-venv/bin/buildslave create-slave --force /Users/administrator/rust-buildbot/slave localhost:9987 {{ ansible_default_ipv4.address }} {{buildslave_password}}"
   become: yes
   become_method: sudo
 
@@ -75,7 +80,6 @@
     dest=/Users/administrator/rust-buildbot/slave/info/host
     line= "{{inventory_hostname}}"
     insertafter=EOF
-
 
 - name: Set up firewall rules to only allow ssh from bastion
   copy:
