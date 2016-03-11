@@ -26,6 +26,11 @@
       - s3cmd
       - stunnel
 
+- name: Check whether Buildbot was cloned yet
+  stat:
+    path=/home/rustbuild/rust-buildbot
+  register: buildbot_already_cloned
+
 - name: Clone the Buildbot configs
   git:
       repo='https://github.com/rust-lang/rust-buildbot.git'
@@ -93,7 +98,6 @@
   become: yes
   become_user: rustbuild
 
-
 - name: Template values into slave-list.txt
   template:
     src=slave-list.txt.j2
@@ -124,10 +128,16 @@
   become: yes
   become_user: rustbuild
 
-- name: Buildbot upgrade-master
+- name: Nuke twistd.pid if it's sitting around
+  file:
+    path=/home/rustbuild/rust-buildbot/master/twistd.pid
+    state=absent
+
+- name: Buildbot upgrade-master, only on first run
   command: /home/rustbuild/buildmaster-venv/bin/buildbot upgrade-master /home/rustbuild/rust-buildbot/master
   become: yes
   become_user: rustbuild
+  when: buildbot_already_cloned.isdir is defined and buildbot_already_cloned.stat.isdir
 
 - name: Start Buildbot
   command: /home/rustbuild/buildmaster-venv/bin/buildbot start master
@@ -138,9 +148,10 @@
 
 - name: Configure crontab to start buildbot
   cron:
+    name="buildbot start"
     special_time=reboot
     user="rustbuild"
-    job={{item}}
+    job="{{item}}"
   with_items:
     - "cd ~/rust-buildbot && stunnel4 rust-buildbot-master-stunnel.conf"
     - "cd ~/rustbuildbot/master && /home/rustbuild/buildmaster-venv/bin/buildbot start"
@@ -160,6 +171,7 @@
       dest='/home/rustbuild/s3-directory-listing'
       version=master
       accept_hostkey=yes
+      force=yes
   become: yes
   become_user: rustbuild
 
