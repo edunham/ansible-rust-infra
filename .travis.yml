@@ -5,9 +5,11 @@ sudo: false
 
 install:
     - pip install ansible
+    - pip install ansible-lint
+    - ansible-galaxy install -r galaxy_roles.yaml
 
 script:
-    - "ansible-playbook -i tests/inventory provision/bastion.yaml --syntax-check" 
-    - "ansible-playbook -i tests/inventory provision/buildmaster.yaml --syntax-check" 
-    - "ansible-playbook -i tests/inventory provision/proxy.yaml --syntax-check" 
-    - "ansible-playbook -i tests/inventory provision/playground.yaml --syntax-check" 
+    - "ansible-lint -i tests/inventory provision/bastion.yaml"
+    - "ansible-lint -i tests/inventory provision/buildmaster.yaml"
+    - "ansible-lint -i tests/inventory provision/proxy.yaml"
+    - "ansible-lint -i tests/inventory provision/playground.yaml"

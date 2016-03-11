@@ -124,6 +124,10 @@
   become: yes
   become_user: rustbuild
 
+- name: Buildbot upgrade-master
+  command: /home/rustbuild/buildmaster-venv/bin/buildbot upgrade-master /home/rustbuild/rust-buildbot/master
+  become: yes
+  become_user: rustbuild
 
 - name: Start Buildbot
   command: /home/rustbuild/buildmaster-venv/bin/buildbot start master
