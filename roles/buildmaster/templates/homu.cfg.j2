@@ -10,6 +10,7 @@ port = {{ homu.port }}
 owner = "rust-lang"
 name = "rust"
 reviewers = [
+{% if master_cfg_txt.env == "prod" %}
     "Aatch",
     "BrendanEich",
     "BurntSushi",
@@ -73,10 +74,14 @@ reviewers = [
     "vadimcn",
     "yichoi",
     "z0w0",
+{% else %}
+    "alexcrichton",
+    "brson"
+{% endif %}
 ]
 
 [repo.rust.buildbot]
-url = "http://buildbot.rust-lang.org"
+url = "{{ homu.rust_buildbot_url }}"
 secret = "{{ homu.rust_buildbot_secret }}"
 username = "{{ homu.rust_buildbot_username }}"
 password = "{{ buildbot_logins[homu.rust_buildbot_username] }}"
@@ -118,16 +123,21 @@ secret = "{{ homu.rust_github_secret }}"
 owner = "rust-lang"
 name = "cargo"
 reviewers = [
+{% if master_cfg_txt.env == "prod" %}
     "alexcrichton",
     "brson",
     "carllerche",
     "huonw",
     "steveklabnik",
     "wycats",
+{% else %}
+    "alexcrichton",
+    "brson"
+{% endif %}
 ]
 
 [repo.cargo.buildbot]
-url = "http://buildbot.rust-lang.org"
+url = "{{ homu.rust_buildbot_url }}"
 secret = "{{ homu.cargo_buildbot_secret }}"
 username = "{{ homu.cargo_buildbot_username }}"
 password = "{{ buildbot_logins[homu.cargo_buildbot_username] }}"

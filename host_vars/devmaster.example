@@ -1,0 +1,64 @@
+---
+
+aws_creds:
+  access_key: "secret"
+  secret_key: "secret"
+
+cf_invalidate:
+  cf_distribution: ""
+
+homu:
+  port: 7942
+  gh_access_token: "secret"
+  app_client_id: "secret"
+  app_client_secret: "secret"
+  rust_buildbot_url: "http://00.00.00.000/"
+  rust_buildbot_secret: "secret"
+  rust_buildbot_username: "user"
+  rust_github_secret: "secret"
+  cargo_buildbot_secret: "secret"
+  cargo_buildbot_username: "user"
+  cargo_github_secret: "secret"
+
+buildbot_logins:
+  any-build: "secret"
+  rust: "secret"
+
+master_cfg_txt:
+  env: "dev"
+  homu_secret: "secret"
+  master_addy: "00.00.00.000:9988"
+  rust_org: "brson"
+  buildbot_org: "rust-lang"
+  cargo_org: "brson"
+  packaging_org: "brson"
+  s3_name: "dev-static-rust-lang-org"
+  public_dist: "https://dev-static.rust-lang.org"
+
+docker_slaves:
+  linux1: "secret"
+  linux2: "secret"
+  linux3: "secret"
+  linux4: "secret"
+
+lincross_slaves:
+  lincross1: "secret"
+android_slaves:
+  linux-64-x-android-t: "secret"
+arm_android_slaves:
+  dist-arm-android: "secret"
+linux_snap_slaves:
+  linux-snap: "secret"
+
+win_slaves:
+  win1: "secret"
+  win2: "secret"
+  win3: "secret"
+  win4: "secret"
+  win5: "secret"
+
+windist_slaves:
+  windist1: "secret"
+  windist2: "secret"
+  windist3: "secret"
+  windist4: "secret"

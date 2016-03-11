@@ -137,7 +137,7 @@
   command: /home/rustbuild/buildmaster-venv/bin/buildbot upgrade-master /home/rustbuild/rust-buildbot/master
   become: yes
   become_user: rustbuild
-  when: buildbot_already_cloned.isdir is defined and buildbot_already_cloned.stat.isdir
+  when: buildbot_already_cloned.stat.exists == False
 
 - name: Start Buildbot
   command: /home/rustbuild/buildmaster-venv/bin/buildbot start master
