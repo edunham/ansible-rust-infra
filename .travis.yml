@@ -9,7 +9,7 @@ install:
     - ansible-galaxy install -r galaxy_roles.yaml
 
 script:
-    - "ansible-lint -i tests/inventory provision/bastion.yaml"
-    - "ansible-lint -i tests/inventory provision/buildmaster.yaml"
-    - "ansible-lint -i tests/inventory provision/proxy.yaml"
-    - "ansible-lint -i tests/inventory provision/playground.yaml"
+    - "ansible-lint provision/bastion.yaml"
+    - "ansible-lint provision/buildmaster.yaml"
+    - "ansible-lint provision/proxy.yaml"
+    - "ansible-lint provision/playground.yaml"
