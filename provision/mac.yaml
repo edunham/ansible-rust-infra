@@ -1,6 +1,8 @@
 ---
 - name: Deploy the Macs
   hosts: mac:prod-macs
+  become: yes
+  become_method: sudo
   roles:
     - edunham.xcode
     - {role: geerlingguy.homebrew,
