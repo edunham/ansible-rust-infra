@@ -11,7 +11,7 @@
     name=users
     state=present
 
-- name: Create Ansible user account 
+- name: Create Ansible user account
   user:
     name=ansible
     shell=/bin/bash
@@ -23,20 +23,21 @@
     dest=/home/ansible/.bashrc
     line='source /home/ansible/ansible-venv/bin/activate'
     state=present
-    insertafter=EOF  
-    
-- name: Clone this repo (how meta!)
+    insertafter=EOF
+
+- name: Clone this ansible reporepo
   git:
     clone=yes
     dest="/home/ansible/ansible-rust-infra"
     force=yes
     repo="https://github.com/edunham/ansible-rust-infra.git"
+    version=master
     update=yes
 
 - name: Ensure that the venv is created, with reqs instaled
   pip:
     virtualenv=/home/ansible/ansible-venv
-    requirements=/home/ansible/ansible-rust-infra/pip_requirements.txt 
+    requirements=/home/ansible/ansible-rust-infra/pip_requirements.txt
 
 - name: Install or update Ansible-Galaxy dependencies
   command: /home/ansible/ansible-venv/bin/ansible-galaxy install --force -r /home/ansible/ansible-rust-infra/galaxy_roles.yaml
@@ -49,7 +50,7 @@
   become: yes
   with_items: account_names
 
-- name: Authorize everyone's SSH keys 
+- name: Authorize everyone's SSH keys
   authorized_key:
     user={{ item.user }}
     key="{{ item.key }}"
@@ -59,4 +60,4 @@
 # TODO FIXME: need IDS
 
 # TODO FIXME IRC hook to pull from specific Git branch and run Ansible in a
-# screen 
+# screen

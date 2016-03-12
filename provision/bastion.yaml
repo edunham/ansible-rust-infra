@@ -1,9 +1,10 @@
 ---
+
 - name: Deploy the bastion
   hosts: bastion
   user: ansible
-  sudo: True
-  sudo_user: root
+  become: True
+  become_user: root
 
   roles:
     - { role: ubuntu,
@@ -15,4 +16,4 @@
                        "pip",
                        "python-virtualenv",
                        "sshpass"]
-
+      }
