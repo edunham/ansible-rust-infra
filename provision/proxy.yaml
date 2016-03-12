@@ -6,7 +6,7 @@
   become: yes
   become_method: sudo
 
-  roles: 
+  roles:
     - { role: ubuntu,
         hostname: "proxy"}
     - proxy
