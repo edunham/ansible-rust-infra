@@ -1,18 +1,18 @@
 ---
 
 rust_bot_cert_pem: |
------BEGIN CERTIFICATE-----
------END CERTIFICATE-----
+    -----BEGIN CERTIFICATE-----
+    -----END CERTIFICATE-----
 
 rust_bot_sign_passphrase: "secret"
 
 rust_bot_privkey: |
------BEGIN PRIVATE KEY-----
------END PRIVATE KEY-----
+    -----BEGIN PRIVATE KEY-----
+    -----END PRIVATE KEY-----
 
 rust_bot_sign_pubkey: |
------BEGIN PGP PUBLIC KEY BLOCK-----
------END PGP PUBLIC KEY BLOCK-----
+    -----BEGIN PGP PUBLIC KEY BLOCK-----
+    -----END PGP PUBLIC KEY BLOCK-----
 
 aws_creds:
   access_key: "secret"
