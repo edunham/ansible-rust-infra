@@ -10,6 +10,7 @@ install:
 
 script:
     - "ansible-lint provision/bastion.yaml"
-    - "ansible-lint provision/buildmaster.yaml"
+    - "ansible-lint provision/devmaster.yaml"
+    - "ansible-lint provision/prodmaster.yaml"
     - "ansible-lint provision/proxy.yaml"
     - "ansible-lint provision/playground.yaml"
