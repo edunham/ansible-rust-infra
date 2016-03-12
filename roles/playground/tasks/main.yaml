@@ -16,11 +16,12 @@
   git: repo=https://github.com/edunham/rust-playpen.git
        dest=/root/rust-playpen
        accept_hostkey=yes
+       version=master
 
 - name: Install Python dependencies
-  pip: 
+  pip:
     name={{ item}}
-  with_items: 
+  with_items:
     - pyyaml
     - requests
     - irc
@@ -38,7 +39,7 @@
   copy:
     src={{ item }}
     dest=/root/rust-playpen/{{ item }}
-  with_items: 
+  with_items:
     - shorten_key.py
     - irc.yaml
 
@@ -46,7 +47,7 @@
   copy:
     src={{item}}
     dest=/etc/systemd/system/{{item}}
-  with_items: 
+  with_items:
     - rust-playpen-irc.service
     - rust-playpen-web.service
     - rust-playpen-update.service
@@ -55,7 +56,7 @@
 # TODO place status.sh
 
 - name: make packages directory
-  file: 
+  file:
     path=/root/packages
     state=directory
 
@@ -63,3 +64,4 @@
   git: repo=https://github.com/thestinger/playpen.git
     dest=/root/packages/
     accept_hostkey=yes
+    version=master
