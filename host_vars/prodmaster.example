@@ -1,6 +1,6 @@
 ---
 
-rust_bot_cert_pem: |
+rust_bot_cert: |
     -----BEGIN CERTIFICATE-----
     -----END CERTIFICATE-----
 
