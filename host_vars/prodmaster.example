@@ -1,5 +1,19 @@
 ---
 
+rust_bot_cert_pem: |
+-----BEGIN CERTIFICATE-----
+-----END CERTIFICATE-----
+
+rust_bot_sign_passphrase: "secret"
+
+rust_bot_privkey: |
+-----BEGIN PRIVATE KEY-----
+-----END PRIVATE KEY-----
+
+rust_bot_sign_pubkey: |
+-----BEGIN PGP PUBLIC KEY BLOCK-----
+-----END PGP PUBLIC KEY BLOCK-----
+
 aws_creds:
   access_key: "secret"
   secret_key: "secret"
@@ -14,6 +28,7 @@ homu:
   app_client_secret: "secret"
   rust_buildbot_secret: "secret"
   rust_buildbot_username: "user"
+  rust_buildbot_url: "http://buildbot.rust-lang.org/"
   rust_github_secret: "secret"
   cargo_buildbot_secret: "secret"
   cargo_buildbot_username: "user"

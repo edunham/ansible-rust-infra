@@ -90,21 +90,29 @@
   become: yes
   become_user: rustbuild
 
-- name: Template values into master.cfg.txt
+- name: Template files into master directory
   template:
-    src=master.cfg.txt.j2
-    dest=/home/rustbuild/rust-buildbot/master/master.cfg.txt
+    src="{{ item }}.j2"
+    dest="/home/rustbuild/rust-buildbot/master/{{ item }}"
     mode=0640
   become: yes
   become_user: rustbuild
+  with_items:
+    - master.cfg.txt
+    - slave-list.txt
 
-- name: Template values into slave-list.txt
+- name: Template files into rust-buildbot directory
   template:
-    src=slave-list.txt.j2
-    dest=/home/rustbuild/rust-buildbot/master/slave-list.txt
+    src="{{ item }}.j2"
+    dest="/home/rustbuild/rust-buildbot/{{ item }}"
     mode=0640
   become: yes
   become_user: rustbuild
+  with_items:
+    - rust-bot-cert.pem
+    - rust-bot-sign-passphrase
+    - rust-bot-privkey.pem
+    - rust-bot-sign-pubkey.asc
 
 - name: Template values into .s3cfg
   template:
