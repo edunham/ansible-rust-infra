@@ -37,6 +37,7 @@
       dest='/home/rustbuild/rust-buildbot'
       version=master
       accept_hostkey=yes
+      force=yes
   become: yes
   become_user: rustbuild
   when: noclone == False
@@ -146,6 +147,13 @@
   become: yes
   become_user: rustbuild
   when: buildbot_already_cloned.stat.exists == False
+
+- name: Start stunnel
+  command: stunnel4 rust-buildbot-master-stunnel.conf
+  args:
+    chdir: /home/rustbuild/rust-buildbot/
+  become: yes
+  become_user: rustbuild
 
 - name: Start Buildbot
   command: /home/rustbuild/buildmaster-venv/bin/buildbot start master
