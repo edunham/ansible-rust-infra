@@ -34,7 +34,16 @@
     - virtualenv
   when: install_python == True
 
-- name: Create buildslave venv & upgrade pip
+- name: check for buildslave venv
+  stat:
+   path=/Users/administrator/buildslave-venv
+  register: buildslave_venv
+
+- name: Create buildslave venv
+  command: virtualenv /Users/administrator/buildslave-venv
+  when: buildslave_venv.stat.exists == False
+
+- name: Upgrade pip
   pip:
     name=pip
     extra_args="--upgrade"
@@ -53,7 +62,7 @@
       accept_hostkey=yes
       force=yes
 
-- name: Pretend to have run setup-slave.sh, Place stunnel conf
+- name: Pretend to have run setup-slave.sh, place stunnel conf
   copy:
     src=rust-buildbot-slave-stunnel-final.conf
     dest="{{stunnel_conf_path}}"
@@ -81,7 +90,7 @@
 - name: set hostname
   lineinfile:
     dest=/Users/administrator/rust-buildbot/slave/info/host
-    line= "{{inventory_hostname}}"
+    line="{{inventory_hostname}}"
     insertafter=EOF
 
 - name: Set up firewall rules to only allow ssh from bastion
