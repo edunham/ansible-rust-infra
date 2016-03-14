@@ -137,10 +137,11 @@
   become: yes
   become_user: rustbuild
 
-- name: Nuke twistd.pid if it's sitting around
+- name: Nuke twistd.pid if we're going to upgrade master
   file:
     path=/home/rustbuild/rust-buildbot/master/twistd.pid
     state=absent
+  when: buildbot_already_cloned.stat.exists == False
 
 - name: Buildbot upgrade-master, only on first run
   command: /home/rustbuild/buildmaster-venv/bin/buildbot upgrade-master /home/rustbuild/rust-buildbot/master
