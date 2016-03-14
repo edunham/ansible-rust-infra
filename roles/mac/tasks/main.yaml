@@ -71,7 +71,7 @@
   command: "/usr/local/bin/stunnel rust-buildbot-slave-stunnel-final.conf"
   args:
     chdir: "{{ stunnel_conf_path }}"
-
+  ignore_errors: yes
 
 - name: setup-slave, Nuke old artifacts
   file:
