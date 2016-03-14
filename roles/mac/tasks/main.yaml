@@ -65,11 +65,13 @@
 - name: Pretend to have run setup-slave.sh, place stunnel conf
   copy:
     src=rust-buildbot-slave-stunnel-final.conf
-    dest="{{stunnel_conf_path}}"
+    dest="{{stunnel_conf_path}}/rust-buildbot-slave-stunnel-final.conf"
 
 - name: setup-slave, Start stunnel
-  command: "stunnel {{stunnel_conf_path}}"
-  ignore_errors: yes
+  command: "/usr/bin/stunnel rust-buildbot-slave-stunnel-final.conf"
+  args:
+    chdir="{{ stunnel_conf_path }}"
+
 
 - name: setup-slave, Nuke old artifacts
   file:
