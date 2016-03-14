@@ -68,7 +68,7 @@
     dest="{{stunnel_conf_path}}/rust-buildbot-slave-stunnel-final.conf"
 
 - name: setup-slave, Start stunnel
-  command: "/usr/bin/stunnel rust-buildbot-slave-stunnel-final.conf"
+  command: "/usr/local/bin/stunnel rust-buildbot-slave-stunnel-final.conf"
   args:
     chdir: "{{ stunnel_conf_path }}"
 
