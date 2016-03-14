@@ -15,12 +15,14 @@
   get_url:
     url="https://www.python.org/ftp/python/2.7.11/python-2.7.11-macosx10.6.pkg"
     dest="/Users/administrator/python.pkg"
+  when: install_python == True
 
 - name: Install latest Python
   command: installer -pkg python.pkg -target /
   args:
     creates: /usr/local/bin/python
   become: yes
+  when: install_python == True
 
 - name: Link Python stuff to default path
   file:
@@ -30,6 +32,7 @@
   with_items:
     - pip
     - virtualenv
+  when: install_python == True
 
 - name: Create buildslave venv & upgrade pip
   pip:
@@ -72,7 +75,7 @@
 - name: set admin email
   lineinfile:
     dest=/Users/administrator/rust-buildbot/slave/info/admin
-    line= 'admin@rust-lang.org'
+    line='admin@rust-lang.org'
     insertafter=EOF
 
 - name: set hostname
