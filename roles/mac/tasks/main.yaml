@@ -40,7 +40,7 @@
   register: buildslave_venv
 
 - name: Create buildslave venv
-  command: virtualenv /Users/administrator/buildslave-venv
+  command: /usr/local/bin/virtualenv /Users/administrator/buildslave-venv
   when: buildslave_venv.stat.exists == False
 
 - name: Upgrade pip
