@@ -83,11 +83,28 @@
   become: yes
   become_method: sudo
 
+- name: Clear admin email boilerplate
+  lineinfile:
+    dest=/Users/administrator/rust-buildbot/slave/info/admin
+    line='Your Name Here <admin@youraddress.invalid>'
+    state=absent
+
+- name: Clear slave description boilerplate
+  lineinfile:
+    dest=/Users/administrator/rust-buildbot/slave/info/admin
+    line='Please put a description of this build host here'
+    state=absent
+
 - name: set admin email
   lineinfile:
     dest=/Users/administrator/rust-buildbot/slave/info/admin
     line='admin@rust-lang.org'
     insertafter=EOF
+
+- name: Start or restart buildslave
+  command: /Users/administrator/buildslave-venv/bin/builslave restart slave
+  args:
+    chdir: /Users/administrator/rust-buildbot
 
 - name: set hostname
   lineinfile:
