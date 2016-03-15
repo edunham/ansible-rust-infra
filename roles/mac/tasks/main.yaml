@@ -1,16 +1,4 @@
 ---
-- name: Install Required Packages
-  homebrew:
-    name={{ item }}
-    state=present
-    update_homebrew=yes
-    upgrade_all=yes
-  with_items:
-    - python
-    - stunnel
-    - git
-    - cmake
-
 - name: Download Python pkg
   get_url:
     url="https://www.python.org/ftp/python/2.7.11/python-2.7.11-macosx10.6.pkg"
