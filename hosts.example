@@ -11,8 +11,11 @@ ansible_ssh_user=administrator
 [proxy]
 111.22.33.45 ansible_ssh_user=root
 
-[buildmaster]
+[prodmaster]
 111.22.33.46
+
+[devmaster]
+111.22.33.47
 
 [devmaster]
 111.22.33.47
