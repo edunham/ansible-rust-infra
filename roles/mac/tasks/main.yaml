@@ -102,7 +102,7 @@
     insertafter=EOF
 
 - name: Start or restart buildslave
-  command: /Users/administrator/buildslave-venv/bin/builslave restart slave
+  command: /Users/administrator/buildslave-venv/bin/buildslave restart slave
   args:
     chdir: /Users/administrator/rust-buildbot
 
