@@ -80,7 +80,8 @@
 
 # buildslave create-slave BASEDIR MASTERHOST:PORT SLAVENAME PASSWORD
 - name: setup-slave, (re)create buildbot slave
-  command: "/Users/administrator/buildslave-venv/bin/buildslave create-slave --force /Users/administrator/rust-buildbot/slave localhost:9987 {{ ansible_default_ipv4.address }} {{buildslave_password}}"
+  command: "/Users/administrator/buildslave-venv/bin/buildslave create-slave
+--force /Users/administrator/rust-buildbot/slave localhost:9987 {{ slavename }} {{ buildslave_password }}"
   become: yes
   become_method: sudo
 
