@@ -200,7 +200,7 @@
   become: yes
   become_user: rustbuild
 
-- name: Create crontab entries to run dist update and invalidation
+- name: Create crontab entries to run dist update and invalidation in prod
   cron:
     name="Run {{ item }}"
     state=present
@@ -210,5 +210,6 @@
   with_items:
     - "sh ~/invalidate.sh"
     - "sh ~/update-rust-dist-index.sh"
+  when: master_cfg_txt.env == "prod"
 
 # TODO FIXME: Start stunnels if necessary
