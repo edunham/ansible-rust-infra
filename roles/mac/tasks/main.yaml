@@ -72,6 +72,7 @@
 --force /Users/administrator/rust-buildbot/slave localhost:9987 {{ slavename }} {{ buildslave_password }}"
   become: yes
   become_method: sudo
+  ignore_errors: yes
 
 - name: Clear admin email boilerplate
   lineinfile:
