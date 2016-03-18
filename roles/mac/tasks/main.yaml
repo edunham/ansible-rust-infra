@@ -96,12 +96,7 @@
   command: /Users/administrator/buildslave-venv/bin/buildslave restart slave
   args:
     chdir: /Users/administrator/rust-buildbot
-
-- name: set hostname
-  lineinfile:
-    dest=/Users/administrator/rust-buildbot/slave/info/host
-    line="{{inventory_hostname}}"
-    insertafter=EOF
+  ignore_errors: yes
 
 - name: Set up firewall rules to only allow ssh from bastion
   copy:
